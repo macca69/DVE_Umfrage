@@ -16,7 +16,7 @@ unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 
 erste_achse = st.selectbox('Erste Achse', unique_columns)
 
-unique_columns.remove(erste_achse)
+#unique_columns.remove(erste_achse)
 
 zweite_achse = st.selectbox('Zweite Achse', unique_columns)
 
