@@ -24,11 +24,6 @@ col3, col4 = st.columns(2)
 typ = col3.checkbox("Percent")
 swap = col4.checkbox('Achse tauschen')
 
-if swap:
-    erste_achse, zweite_achse = zweite_achse, erste_achse
-
-st.write(erste_achse, zweite_achse)
-
 if typ:
     barnorm='percent'
 else:
@@ -42,4 +37,6 @@ fig.update_layout(legend=dict(
     y=-0.25,
     xanchor="left",
     x=0), margin=dict(l=0, r=0, t=50, b=0))
+fig.update_xaxes(title=zweite_achse)
+
 st.plotly_chart(fig, use_container_width=True)
