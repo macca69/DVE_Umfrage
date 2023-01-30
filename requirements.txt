@@ -1,3 +1,4 @@
 plotly
 streamlit
 pandas
+natsort==8.2.0
