@@ -19,6 +19,7 @@ st.write(unique_columns)
 erste_achse = st.selectbox('Erste Achse', unique_columns, 13)
 
 st.write(erste_achse, unique_columns)
+st.write(unique_columns.remove(erste_achse))
 
 zweite_achse = st.selectbox('Zweite Achse', unique_columns.remove(erste_achse), 12)
 
