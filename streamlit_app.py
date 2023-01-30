@@ -18,7 +18,7 @@ else:
     barnorm='percent'
 
 histogram = df_1[[erste_achse, zweite_achse]].value_counts().to_frame('counts').reset_index()
-fig = px.histogram(histogram, x=erste_achse, y='counts', color=zweite_achse, barnorm=barnorm, text_auto='.1f', width=1000)
+fig = px.histogram(histogram, x=erste_achse, y='counts', color=zweite_achse, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 fig.update_layout(legend=dict(
     orientation="v",
     yanchor="top",
