@@ -15,6 +15,7 @@ unique_columns = df_1.columns.to_list()
 unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 
 erste_achse = st.selectbox('Erste Achse', unique_columns, 13)
+st.write(unique_columns.remove(erste_achse))
 zweite_achse = st.selectbox('Zweite Achse', unique_columns.remove(erste_achse), 12)
 
 typ = st.checkbox("Percent", key="disabled")
