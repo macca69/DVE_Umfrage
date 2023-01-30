@@ -24,7 +24,9 @@ typ = st.checkbox("Percent")
 swap = st.checkbox('Achse tauschen')
 
 if swap:
-    erste_achse, zweite_ache = zweite_achse, erste_achse
+    erste_achse, zweite_achse = zweite_achse, erste_achse
+
+st.write(erste_achse, zweite_achse)
 
 if typ:
     barnorm='percent'
