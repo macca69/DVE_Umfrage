@@ -38,7 +38,7 @@ fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="
                   margin=dict(l=0, r=0, t=40, b=0))
 
 fig.update_xaxes(title=erste_achse.split(') ')[1], categoryarray=natsorted(histogram[erste_achse].unique()), categoryorder='array')
-fig.update_yaxes(title=zweite_achse.split(') ')[1])
+fig.update_yaxes(title=zweite_achse.split(') ')[1], categoryarray=natsorted(histogram[zweite_achse].unique()), categoryorder='array')
 
 st.plotly_chart(fig, use_container_width=True)
 
