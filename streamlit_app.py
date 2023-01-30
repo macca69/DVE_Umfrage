@@ -14,8 +14,6 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 unique_columns = df_1.columns.to_list()
 unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 
-st.write(unique_columns)
-
 erste_achse = st.selectbox('Erste Achse', unique_columns, 13)
 
 unique_columns.remove(erste_achse)
