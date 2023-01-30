@@ -1,8 +1,13 @@
 import pandas as pd
 import plotly.express as px
 import streamlit as st
+from PIL import Image
 
-st.title('Deutscher Verband Ergotherapie:sunglasses:')
+image = Image.open('DVE_loge.png')
+
+st.image(image)
+
+st.title('Umfrage 2022:sunglasses:')
 
 df_1 = pd.read_csv('df_1.csv', index_col=0)
 
