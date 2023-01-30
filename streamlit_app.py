@@ -18,7 +18,7 @@ erste_achse = st.selectbox('Erste Achse', unique_columns)
 
 #unique_columns.remove(erste_achse)
 
-zweite_achse = st.selectbox('Zweite Achse', unique_columns)
+zweite_achse = st.selectbox('Zweite Achse', unique_columns, 1)
 
 col3, col4 = st.columns(2)
 typ = col3.checkbox("Percent")
