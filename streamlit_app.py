@@ -14,14 +14,15 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 unique_columns = df_1.columns.to_list()
 unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 
-erste_achse = st.selectbox('Erste Achse', unique_columns, 13)
+erste_achse = st.selectbox('Erste Achse', unique_columns)
 
 unique_columns.remove(erste_achse)
 
-zweite_achse = st.selectbox('Zweite Achse', unique_columns, 12)
+zweite_achse = st.selectbox('Zweite Achse', unique_columns)
 
-typ = st.checkbox("Percent")
-swap = st.checkbox('Achse tauschen')
+col3, col4 = st.columns(2)
+typ = col3.checkbox("Percent")
+swap = col4.checkbox('Achse tauschen')
 
 if swap:
     erste_achse, zweite_achse = zweite_achse, erste_achse
