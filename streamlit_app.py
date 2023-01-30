@@ -3,7 +3,7 @@ import plotly.express as px
 import streamlit as st
 from PIL import Image
 
-image = Image.open('DVE_loge.png')
+image = Image.open('DVE_logo.png')
 
 st.image(image)
 
