@@ -22,7 +22,7 @@ zweite_achse = st.selectbox('Zweite Achse', unique_columns)
 
 col3, col4 = st.columns(2)
 typ = col3.checkbox("Percent")
-swap = col4.checkbox('Achse tauschen')
+#swap = col4.checkbox('Achse tauschen')
 
 if typ:
     barnorm='percent'
