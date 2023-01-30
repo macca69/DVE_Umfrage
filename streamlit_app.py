@@ -3,11 +3,11 @@ import plotly.express as px
 import streamlit as st
 from PIL import Image
 
+col1, col2 = st.columns(2)
 image = Image.open('DVE_logo.png')
+col1.image(image)
 
-st.image(image)
-
-st.title('Umfrage 2022:sunglasses:')
+col2.title('Umfrage 2022:sunglasses:')
 
 df_1 = pd.read_csv('df_1.csv', index_col=0)
 
