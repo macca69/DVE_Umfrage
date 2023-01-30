@@ -2,6 +2,7 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 from PIL import Image
+from natsort import natsorted
 
 col1, col2 = st.columns(2)
 image = Image.open('DVE_logo.png')
