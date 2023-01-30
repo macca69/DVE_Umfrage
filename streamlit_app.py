@@ -37,6 +37,6 @@ fig.update_layout(legend=dict(
     y=-0.25,
     xanchor="left",
     x=0), margin=dict(l=0, r=0, t=50, b=0))
-fig.update_xaxes(title=zweite_achse)
+fig.update_yaxes(title=zweite_achse)
 
 st.plotly_chart(fig, use_container_width=True)
