@@ -21,6 +21,10 @@ unique_columns.remove(erste_achse)
 zweite_achse = st.selectbox('Zweite Achse', unique_columns, 12)
 
 typ = st.checkbox("Percent", key="disabled")
+swap = st.checkbox('Achse tauschen', key="disabled")
+
+if swap:
+    erste_achse, zweite_ache = zweite_achse, erste_achse
 
 if typ:
     barnorm='percent'
