@@ -2,6 +2,8 @@ import pandas as pd
 import plotly.express as px
 import streamlit as st
 
+st.title('Deutscher Verband Ergotherapie:sunglasses:')
+
 df_1 = pd.read_csv('df_1.csv', index_col=0)
 
 unique_columns = df_1.columns.to_list()
@@ -10,12 +12,12 @@ unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 erste_achse = st.selectbox('Erste Achse', unique_columns, 13)
 zweite_achse = st.selectbox('Zweite Achse', unique_columns, 12)
 
-typ = 'percent'
+typ = st.checkbox("Percent", key="disabled")
 
-if typ=='anzahl':
-    barnorm=''
-else:
+if typ:
     barnorm='percent'
+else:
+    barnorm=''
 
 histogram = df_1[[erste_achse, zweite_achse]].value_counts().to_frame('counts').reset_index()
 fig = px.histogram(histogram, x=erste_achse, y='counts', color=zweite_achse, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
