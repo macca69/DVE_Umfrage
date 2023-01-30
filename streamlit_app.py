@@ -28,15 +28,16 @@ if typ:
     barnorm='percent'
 else:
     barnorm=''
+    
+try:
+    histogram = df_1[[erste_achse, zweite_achse]].value_counts().to_frame('counts').reset_index()
+    
+    fig = px.histogram(histogram, x=erste_achse, y='counts', color=zweite_achse, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
+    fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="left", x=0),
+                      margin=dict(l=0, r=0, t=50, b=0))
+    fig.update_yaxes(title=zweite_achse)
+    st.plotly_chart(fig, use_container_width=True)
 
-histogram = df_1[[erste_achse, zweite_achse]].value_counts().to_frame('counts').reset_index()
-fig = px.histogram(histogram, x=erste_achse, y='counts', color=zweite_achse, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
-fig.update_layout(legend=dict(
-    orientation="v",
-    yanchor="top",
-    y=-0.25,
-    xanchor="left",
-    x=0), margin=dict(l=0, r=0, t=50, b=0))
-fig.update_yaxes(title=zweite_achse)
-
-st.plotly_chart(fig, use_container_width=True)
+except:
+    st.error('Unteschiedliche Achsen wählen', icon="🚨")
+    st.stop()
