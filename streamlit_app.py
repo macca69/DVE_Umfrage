@@ -31,6 +31,8 @@ unique_columns = df_1.columns.to_list()
 col3, col4 = st.columns(2)
 
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
+col3.multiselect('', df_1[filter1].unique(), df_1[filter1].unique())
+
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 
 filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
