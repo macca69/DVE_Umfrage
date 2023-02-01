@@ -51,7 +51,7 @@ else:
     
 
 if filter2 == 'keiner':
-    st.write(df_1[filter1].value_counts().rename(columns={filter1: 'counts'}).reset_index(names=filter1))
+    st.write(df_1[filter1].value_counts().to_frame().rename(columns={filter1: 'counts'}))#.reset_index(names=filter1))  rename(columns={"A": "a"
     fig = px.histogram(df_1[filter1].value_counts(), barnorm='', text_auto='.1f', width=1000, height=750)
     
     
