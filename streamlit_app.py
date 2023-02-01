@@ -34,9 +34,9 @@ filter1 = st.selectbox('Erster Filter', unique_columns, 1)
 col3, col4 = st.columns([1,5])
 filter2_flag = col3.checkbox('aktiv', value=True)
 if filter2_flag:
-    disabled = True
-else:
     disabled = False
+else:
+    disabled = True
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 3, disabled=disabled)
 
 col5, col6 = st.columns(2)
