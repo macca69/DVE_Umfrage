@@ -32,7 +32,10 @@ col3, col4 = st.columns([1,5])
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 #unique_columns.remove(erste_achse)
 filter2_flag = col3.checkbox('aktiv')
-if filter2_flag: disabled = True
+if filter2_flag:
+    disabled = True
+else:
+    disabled = False
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 3, disabled=disabled)
 
 col5, col6 = st.columns(2)
