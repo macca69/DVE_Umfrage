@@ -33,7 +33,9 @@ else:
 ###########
 
 st.write(df_1)
-st.write(df_1.loc[0, filter2], type(df_1.loc[0, filter2]) == list)
+#st.write(df_1.loc[0, filter2], type(df_1.loc[0, filter2]) == list)
+st.write(df_1.loc[0, filter2], type(df_1.loc[0, filter2]))
+
 st.write(filter2, df_1[filter2].apply(lambda x: type(x) == list).any())
 
 if df_1[filter2].apply(lambda x: type(x) == list).all():
