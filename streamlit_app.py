@@ -28,14 +28,15 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 
 unique_columns = df_1.columns.to_list()
 
-filter1 = st.selectbox('Erster Filter', unique_columns, 1)
-
+col3, col4 = st.columns([1,5])
+filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 #unique_columns.remove(erste_achse)
+filter2_flag = col3.checkbox('aktiv')
+if filter2_flag: disabled = True
+filter2 = col4.selectbox('Zweiter Filter', unique_columns, 3, disabled=disabled)
 
-filter2 = st.selectbox('Zweiter Filter', unique_columns, 3)
-
-col3, col4 = st.columns(2)
-typ = col3.checkbox("Percent")
+col5, col6 = st.columns(2)
+typ = col5.checkbox("Percent")
 
 if typ:
     barnorm='percent'
@@ -58,7 +59,10 @@ if filter2 in mehrfach:
 
     df_2 = pd.concat(df_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
     st.write(df_2)
-    fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
+    if filter2_flag:
+        fig = px.histogram(df_2, x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
+    else:
+        fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
 
 else:
     df_2 = df_1[[filter1, filter2]].value_counts().to_frame('counts').reset_index()
