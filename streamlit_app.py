@@ -52,7 +52,7 @@ else:
 
 if filter2 == 'keiner':
     st.write(df_1[filter1].value_counts().to_frame().rename(columns={filter1: 'counts'}).reset_index(names=filter1))
-    fig = px.histogram(df_1[filter1].value_counts(), barnorm='', text_auto='.1f', width=1000, height=750)
+    fig = px.histogram(df_1[filter1].value_counts().to_frame().rename(columns={filter1: 'counts'}).reset_index(names=filter1), x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
     
     
 elif filter2 in mehrfach:
