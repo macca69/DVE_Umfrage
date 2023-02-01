@@ -33,7 +33,7 @@ col3, col4 = st.columns(2)
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 #unique_columns.remove(erste_achse)
 
-filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3, disabled=disabled)
+filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
 if filter2=='keiner':
     disabled = False
