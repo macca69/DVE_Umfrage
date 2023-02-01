@@ -15,7 +15,6 @@ def flatten(l):
 df_1 = pd.read_csv('df_1.csv', index_col=0)
 
 unique_columns = df_1.columns.to_list()
-unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 
 filter1 = st.selectbox('Erster Filter', unique_columns, 1)
 
@@ -32,6 +31,8 @@ else:
     barnorm=''
     
 ###########
+
+st.write(df_1)
 st.write(filter2, df_1[filter2].apply(lambda x: type(x) == list).all())
 
 if df_1[filter2].apply(lambda x: type(x) == list).all():
