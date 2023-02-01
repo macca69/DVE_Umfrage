@@ -31,7 +31,7 @@ unique_columns = df_1.columns.to_list()
 col3, col4 = st.columns(2)
 
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
-unique_columns.remove(filter1)
+unique_columns = unique_columns.remove(filter1)
 
 filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
