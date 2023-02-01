@@ -19,10 +19,10 @@ mehrfach = ['5b) Fachlicher Schwerpunkt',
             '18a) Welche Serviceleistungen des DVE für Angestellte sind Ihnen bekannt?',
             '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
 
-#col1, col2 = st.columns(2)
-#image = Image.open('DVE_logo.png')
-#col1.image(image)
-#col2.title('Umfrage 2022:sunglasses:')
+col1, col2 = st.columns(2)
+image = Image.open('DVE_logo.png')
+col1.image(image)
+col2.title('Umfrage 2022:sunglasses:')
 
 df_1 = pd.read_csv('df_1.csv', index_col=0)
 
