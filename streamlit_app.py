@@ -52,7 +52,7 @@ else:
 
 if filter2 == 'keiner':
     st.write(df_1[filter1].value_counts())
-    fig = px.histogram(df_1[filter1].value_counts(), x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
+    fig = px.histogram(df_1[filter1].value_counts(), barnorm='', text_auto='.1f', width=1000, height=750)
     
     
 elif filter2 in mehrfach:
@@ -77,7 +77,7 @@ fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="
                   margin=dict(l=0, r=0, t=40, b=0))
 
 fig.update_xaxes(title=filter1.split(') ')[1], categoryarray=natsorted(df_1[filter1].unique()), categoryorder='array')
-fig.update_yaxes(title='Anzahl '+filter2.split(') ')[1])#, categoryarray=natsorted(histogram[filter2].unique()), categoryorder='array')
+#fig.update_yaxes(title='Anzahl '+filter2.split(') ')[1])#, categoryarray=natsorted(histogram[filter2].unique()), categoryorder='array')
 
 st.plotly_chart(fig, use_container_width=True)
 
