@@ -69,6 +69,12 @@ elif filter2 in mehrfach:
     fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 
 else:
+    
+    if st.checkbox("Percent"):
+        barnorm='percent'
+    else:
+        barnorm=''
+        
     df_2 = df_1[[filter1, filter2]].value_counts().to_frame('counts').reset_index()
     fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
     
