@@ -40,24 +40,17 @@ df_1 = df_1[df_1[filter1].isin(x_axis_items)]
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
-if filter2=='keiner':
-    disabled = False
-else:
-    disabled = True
-
-
-col5, col6 = st.columns(2)
-typ = col5.checkbox("Percent")
-
-if typ:
-    barnorm='percent'
-else:
-    barnorm=''
 
 if filter2 == 'keiner':
     fig = px.histogram(df_1[filter1].value_counts().to_frame().rename(columns={filter1: 'counts'}).reset_index(names=filter1), x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
     
 elif filter2 in mehrfach:
+    
+    if st.checkbox("Percent"):
+        barnorm='percent'
+    else:
+        barnorm=''
+        
     df_1[filter2] = df_1[filter2].apply(string_to_list)
 
     df_2 = []
