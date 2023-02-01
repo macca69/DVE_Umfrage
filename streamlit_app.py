@@ -28,16 +28,18 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 
 unique_columns = df_1.columns.to_list()
 
-filter1 = st.selectbox('Erster Filter', unique_columns, 1)
+col3, col4 = st.columns(2)
+
+filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 #unique_columns.remove(erste_achse)
 
-filter2_flag = st.checkbox('aktiv', value=True)
+filter2_flag = col4.checkbox('aktiv', value=True)
 
 if filter2_flag:
     disabled = False
 else:
     disabled = True
-filter2 = st.selectbox('Zweiter Filter', unique_columns, 3, disabled=disabled)
+filter2 = col4.selectbox('Zweiter Filter', unique_columns, 3, disabled=disabled)
 
 col5, col6 = st.columns(2)
 typ = col5.checkbox("Percent")
