@@ -59,7 +59,7 @@ if filter2 in mehrfach:
 
     df_2 = pd.concat(df_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
     st.write(df_2)
-    if filter2_flag:
+    if not filter2_flag:
         fig = px.histogram(df_2, x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
     else:
         fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
