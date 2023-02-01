@@ -47,10 +47,6 @@ if typ:
 else:
     barnorm=''
     
-###########
-
-st.write(filter2 in mehrfach)
-
 if filter2 in mehrfach:
     
     df_1[filter2] = df_1[filter2].apply(string_to_list)
