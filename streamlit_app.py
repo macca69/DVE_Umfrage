@@ -31,7 +31,8 @@ unique_columns = df_1.columns.to_list()
 col3, col4 = st.columns(2)
 
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
-col3.multiselect('', df_1[filter1].unique(), df_1[filter1].unique())
+x_axis_items = col3.multiselect('', df_1[filter1].unique(), df_1[filter1].unique())
+df_1 = df_1[df1[filter1].isin(x_axis_items)]
 
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 
