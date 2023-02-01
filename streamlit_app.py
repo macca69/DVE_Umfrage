@@ -7,6 +7,10 @@ from natsort import natsorted
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
+# Define a custom function to convert strings to lists
+def string_to_list(string):
+    return eval(string)
+
 mehrfach = ['5b) Fachlicher Schwerpunkt',
             '6b) Ich arbeite auch am...',
             '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
@@ -43,6 +47,8 @@ else:
 st.write(filter2 in mehrfach)
 
 if filter2 in mehrfach:
+    
+    df_1[filter2] = df_1[filter2].apply(string_to_list)
 
     df_2 = []
 
