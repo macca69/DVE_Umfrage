@@ -63,7 +63,7 @@ elif filter2 in mehrfach:
         df_2.append(pd.Series(flatten([k for k in df_filter1[filter2]])).value_counts().to_frame().assign(filter1=ii))
 
     df_2 = pd.concat(df_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
-    st.write(df_2)
+    #st.write(df_2)
     fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
 
 else:
