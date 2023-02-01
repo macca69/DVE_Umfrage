@@ -28,10 +28,11 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 
 unique_columns = df_1.columns.to_list()
 
-col3, col4 = st.columns([1,5])
-filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
+filter1 = st.selectbox('Erster Filter', unique_columns, 1)
 #unique_columns.remove(erste_achse)
-filter2_flag = col3.checkbox('aktiv')
+
+col3, col4 = st.columns([1,5])
+filter2_flag = col3.checkbox('aktiv', value=True)
 if filter2_flag:
     disabled = True
 else:
