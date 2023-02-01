@@ -33,7 +33,7 @@ col3, col4 = st.columns(2)
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 
 with col3.expander('Kategorien wählen'):
-    x_axis_items = st.multiselect('Kategorien wählen', df_1[filter1].unique(), df_1[filter1].unique(), label_visibility='collapsed')
+    x_axis_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].unique()), natsorted(df_1[filter1].unique()), label_visibility='collapsed')
 
 df_1 = df_1[df_1[filter1].isin(x_axis_items)]
 
