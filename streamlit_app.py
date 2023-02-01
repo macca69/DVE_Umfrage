@@ -32,12 +32,9 @@ col3, col4 = st.columns(2)
 
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 x_axis_items = col3.multiselect('', df_1[filter1].unique(), df_1[filter1].unique())
-st.write(x_axis_items)
-st.write(df_1[filter1].isin(x_axis_items))
 df_1 = df_1[df_1[filter1].isin(x_axis_items)]
 
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
-
 filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
 if filter2=='keiner':
