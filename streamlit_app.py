@@ -32,7 +32,7 @@ col3, col4 = st.columns(2)
 
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 
-with st.expander('Kategorien wählen'):
+with col3.expander('Kategorien wählen'):
     x_axis_items = col3.multiselect('Wählen', df_1[filter1].unique(), df_1[filter1].unique())
 
 df_1 = df_1[df_1[filter1].isin(x_axis_items)]
