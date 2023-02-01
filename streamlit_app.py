@@ -4,6 +4,9 @@ import streamlit as st
 from PIL import Image
 from natsort import natsorted
 
+def flatten(l):
+    return [item for sublist in l for item in sublist]
+
 col1, col2 = st.columns(2)
 image = Image.open('DVE_logo.png')
 col1.image(image)
@@ -15,11 +18,11 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 unique_columns = df_1.columns.to_list()
 unique_columns = [k for k in unique_columns if 'Mehrfach' not in k]
 
-erste_achse = st.selectbox('Erste Achse', unique_columns, 1)
+filter1 = st.selectbox('Erster Filter', unique_columns, 1)
 
 #unique_columns.remove(erste_achse)
 
-zweite_achse = st.selectbox('Zweite Achse', unique_columns, 3)
+filter2 = st.selectbox('Zweiter Filter', unique_columns, 3)
 
 col3, col4 = st.columns(2)
 typ = col3.checkbox("Percent")
@@ -30,15 +33,31 @@ if typ:
 else:
     barnorm=''
     
-#try:
-histogram = df_1[[erste_achse, zweite_achse]].value_counts().to_frame('counts').reset_index()
+###########
+if df_1[filter2].apply(lambda x: type(x) == list).all():
+
+    df_2 = []
+
+    for ii in df_1[filter1].unique():
+
+        df_filter1 = df_1[df_1[filter1]==ii]
+
+        df_2.append(pd.Series(flatten([k for k in df_filter1[filter2]])).value_counts().to_frame().assign(filter1=ii))
+
+    df_2 = pd.concat(df_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
+    #display (df_3)
+    fig = px.histogram(df_3, x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
+
+else:
+    df_2 = df_1[[filter1, filter2]].value_counts().to_frame('counts').reset_index()
+    #display (df_3)
+    fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
     
-fig = px.histogram(histogram, x=erste_achse, y='counts', color=zweite_achse, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="left", x=0),
                   margin=dict(l=0, r=0, t=40, b=0))
 
-fig.update_xaxes(title=erste_achse.split(') ')[1], categoryarray=natsorted(histogram[erste_achse].unique()), categoryorder='array')
-fig.update_yaxes(title=zweite_achse.split(') ')[1], categoryarray=natsorted(histogram[zweite_achse].unique()), categoryorder='array')
+fig.update_xaxes(title=filter1.split(') ')[1], categoryarray=natsorted(histogram[filter1].unique()), categoryorder='array')
+fig.update_yaxes(title='Anzahl '+filter2.split(') ')[1])#, categoryarray=natsorted(histogram[filter2].unique()), categoryorder='array')
 
 st.plotly_chart(fig, use_container_width=True)
 
