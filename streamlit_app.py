@@ -48,7 +48,6 @@ if typ:
     barnorm='percent'
 else:
     barnorm=''
-    
 
 if filter2 == 'keiner':
     fig = px.histogram(df_1[filter1].value_counts().to_frame().rename(columns={filter1: 'counts'}).reset_index(names=filter1), x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
@@ -64,7 +63,7 @@ elif filter2 in mehrfach:
 
     df_2 = pd.concat(df_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
     #st.write(df_2)
-    fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
+    fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 
 else:
     df_2 = df_1[[filter1, filter2]].value_counts().to_frame('counts').reset_index()
