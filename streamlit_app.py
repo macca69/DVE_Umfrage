@@ -7,6 +7,14 @@ from natsort import natsorted
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
+mehrfach = ['5b) Fachlicher Schwerpunkt',
+            '6b) Ich arbeite auch am...',
+            '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
+            '15b) Wesentliche Verschlechterungen der Arbeitsbedingungen in den letzten 2 Jahren',
+            '15c) Wesentliche Verbesserungen der Arbeitsbedingungen in den letzten 2 Jahren',
+            '18a) Welche Serviceleistungen des DVE für Angestellte sind Ihnen bekannt?',
+            '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
+
 #col1, col2 = st.columns(2)
 #image = Image.open('DVE_logo.png')
 #col1.image(image)
@@ -32,13 +40,9 @@ else:
     
 ###########
 
-st.write(df_1)
-#st.write(df_1.loc[7, filter2], type(df_1.loc[7, filter2]) == list)
-st.write(df_1.loc[7, filter2], type(df_1.loc[7, filter2]))
+st.write(filter2 in mehrfach)
 
-st.write(filter2, df_1[filter2].apply(lambda x: type(x) == list).any())
-
-if df_1[filter2].apply(lambda x: type(x) == list).all():
+if filter2 in mehrfach:
 
     df_2 = []
 
