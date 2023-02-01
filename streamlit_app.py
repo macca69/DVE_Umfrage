@@ -49,7 +49,7 @@ if df_1[filter2].apply(lambda x: type(x) == list).all():
 
 else:
     df_2 = df_1[[filter1, filter2]].value_counts().to_frame('counts').reset_index()
-    #display (df_3)
+    display (df_2)
     fig = px.histogram(df_2, x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
     
 fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="left", x=0),
