@@ -25,7 +25,6 @@ filter2 = st.selectbox('Zweiter Filter', unique_columns, 3)
 
 col3, col4 = st.columns(2)
 typ = col3.checkbox("Percent")
-#swap = col4.checkbox('Achse tauschen')
 
 if typ:
     barnorm='percent'
@@ -33,6 +32,8 @@ else:
     barnorm=''
     
 ###########
+st.write(filter2, df_1[filter2].apply(lambda x: type(x) == list).all())
+
 if df_1[filter2].apply(lambda x: type(x) == list).all():
 
     df_2 = []
