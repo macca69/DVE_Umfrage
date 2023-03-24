@@ -59,9 +59,10 @@ with st.expander('Datensatz'):
     st.dataframe(df_slice_3, use_container_width=True)
 
 if st.checkbox("Percent"):
-        barnorm='percent'
-    else:
-        barnorm=''
+    barnorm='percent'
+else:
+    barnorm=''
+    
 fig = px.histogram(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
                    x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 
@@ -73,9 +74,10 @@ st.plotly_chart(fig, use_container_width=True)
 
 
 if st.checkbox("Percent"):
-        barnorm='percent'
-    else:
-        barnorm=''
+    barnorm='percent'
+else:
+    barnorm=''
+    
 fig2 = px.histogram(df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
                    x=filter2, y='counts', color=filter3, barnorm='', text_auto='.1f', width=1000, height=750)
 
