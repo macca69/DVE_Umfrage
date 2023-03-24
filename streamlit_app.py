@@ -23,6 +23,8 @@ mehrfach = ['5b) Fachlicher Schwerpunkt',
             '18a) Welche Serviceleistungen des DVE für Angestellte sind Ihnen bekannt?',
             '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
 
+st.set_page_config(layout="wide")
+
 col1, col2 = st.columns(2)
 image = Image.open('DVE_logo.png')
 col1.image(image)
@@ -50,9 +52,8 @@ df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
 df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
 df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
 
-
-st.dataframe(df_slice_1, use_container_width=True)
-st.dataframe(df_slice_2, use_container_width=True)
+#st.dataframe(df_slice_1, use_container_width=True)
+#st.dataframe(df_slice_2, use_container_width=True)
 st.dataframe(df_slice_3, use_container_width=True)
 
 st.stop() 
