@@ -84,7 +84,7 @@ with col7:
     fig2 = px.histogram(df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
                        x=filter2, y='counts', color=filter3, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 
-    fig2.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="left", x=0),
+    fig2.update_layout(legend=dict(orientation="v", yanchor="bottom", y=-1.0, xanchor="left", x=0),
                       margin=dict(l=0, r=0, t=40, b=0))
     fig2.update_xaxes(title=filter2.split(') ')[1], categoryarray=natsorted(filter2_items), categoryorder='array')
     fig2.update_yaxes(title='Anzahl')
