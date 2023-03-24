@@ -87,6 +87,13 @@ fig.update_yaxes(title='Anzahl')
 st.plotly_chart(fig, use_container_width=True)
 
 st.dataframe(df_1, use_container_width=True)
+st.download_button(
+   "Press to Download",
+   df_1.to_csv(index=False).encode('utf-8'),
+   "file.csv",
+   "text/csv",
+   key='download-csv')
+                   
 st.dataframe(df_2, use_container_width=True)
 
 #except:
