@@ -28,7 +28,7 @@ image = Image.open('DVE_logo.png')
 col1.image(image)
 col2.title('Umfrage 2022:sunglasses:')
 
-df_1 = pd.read_csv('df_1.csv', index_col=0)
+df_1 = load_csv()
 
 unique_columns = df_1.columns.to_list()
 
