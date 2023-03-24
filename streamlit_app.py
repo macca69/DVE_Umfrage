@@ -86,7 +86,7 @@ fig.update_yaxes(title='Anzahl')
 
 st.plotly_chart(fig, use_container_width=True)
 
-st.dataframe(df_2)
+st.dataframe(df_2, use_container_width=True)
 
 #except:
 #    st.error('Unterschiedliche Achsen wählen', icon="🚨")
