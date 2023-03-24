@@ -95,6 +95,12 @@ st.download_button(
    key='download-csv')
                    
 st.dataframe(df_2, use_container_width=True)
+st.download_button(
+   "Press to Download",
+   df_2.to_csv(index=False).encode('utf-8'),
+   "file.csv",
+   "text/csv",
+   key='download-csv')
 
 #except:
 #    st.error('Unterschiedliche Achsen wählen', icon="🚨")
