@@ -58,7 +58,7 @@ with st.expander('Datensatz'):
     #st.dataframe(df_slice_2, use_container_width=True)
     st.dataframe(df_slice_3, use_container_width=True)
 
-if st.checkbox("Percent"):
+if st.checkbox("Percent", key='1'):
     barnorm='percent'
 else:
     barnorm=''
@@ -73,7 +73,7 @@ fig.update_yaxes(title='Anzahl')
 st.plotly_chart(fig, use_container_width=True)
 
 
-if st.checkbox("Percent"):
+if st.checkbox("Percent", key='2'):
     barnorm='percent'
 else:
     barnorm=''
