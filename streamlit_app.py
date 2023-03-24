@@ -61,7 +61,7 @@ with st.expander('Datensatz'):
 col6, col7 = st.columns(2)
 
 with col6:
-    if st.checkbox("Percent", key='1'):
+    if st.checkbox("Prozent", key='1'):
         barnorm='percent'
     else:
         barnorm=''
@@ -90,7 +90,9 @@ with col7:
     fig2.update_yaxes(title='Anzahl')
     st.plotly_chart(fig2, use_container_width=True)
 
-st.stop() 
+st.stop()
+
+##################################################################################################################################################
                         
                         
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
@@ -128,7 +130,7 @@ elif filter2 in mehrfach:
 else:
     
     if st.checkbox("Percent"):
-        barnorm='percent'
+        barnorm='Prozent'
     else:
         barnorm=''
         
