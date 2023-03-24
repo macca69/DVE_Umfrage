@@ -4,6 +4,10 @@ import streamlit as st
 from PIL import Image
 from natsort import natsorted
 
+@st.cache
+def load_csv():
+    return pd.read_csv('df_1.csv', index_col=0)
+    
 def flatten(l):
     return [item for sublist in l for item in sublist]
 
