@@ -40,7 +40,7 @@ with col4.expander('Kategorien wählen'):
 
 filter3 = col5.selectbox('Erster Filter', unique_columns, 3)
 with col5.expander('Kategorien wählen'):
-    filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].unique()), natsorted(df_1[filter3].unique()), label_visibility='collapsed')
+    filter3_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].unique()), natsorted(df_1[filter3].unique()), label_visibility='collapsed')
 
 df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
 df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
