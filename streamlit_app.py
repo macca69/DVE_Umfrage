@@ -32,19 +32,20 @@ col2.title('Umfrage 2022:sunglasses:')
 
 df_1 = load_csv()
 
-unique_columns = df_1.columns.to_list()
-
 col3, col4, col5 = st.columns(3)
 
+unique_columns = df_1.columns.to_list()
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 with col3.expander('Kategorien wählen'):
     filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].unique()), natsorted(df_1[filter1].unique()), label_visibility='collapsed')
 
-filter2 = col4.selectbox('Erster Filter', unique_columns, 2)
+unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
+filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 with col4.expander('Kategorien wählen'):
     filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
 
-filter3 = col5.selectbox('Erster Filter', unique_columns, 3)
+unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
+filter3 = col5.selectbox('Dritter Filter', unique_columns, 3)
 with col5.expander('Kategorien wählen'):
     filter3_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].unique()), natsorted(df_1[filter3].unique()), label_visibility='collapsed')
 
@@ -52,9 +53,10 @@ df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
 df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
 df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
 
-#st.dataframe(df_slice_1, use_container_width=True)
-#st.dataframe(df_slice_2, use_container_width=True)
-st.dataframe(df_slice_3, use_container_width=True)
+with st.expander('Datensatz'):
+    #st.dataframe(df_slice_1, use_container_width=True)
+    #st.dataframe(df_slice_2, use_container_width=True)
+    st.dataframe(df_slice_3, use_container_width=True)
 
 fig = px.histogram(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
                    x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
