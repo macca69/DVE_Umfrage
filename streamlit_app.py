@@ -52,13 +52,9 @@ df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
 df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
 df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
 
-st.write(filter1, filter2, filter3)
-
 #st.dataframe(df_slice_1, use_container_width=True)
 #st.dataframe(df_slice_2, use_container_width=True)
 st.dataframe(df_slice_3, use_container_width=True)
-
-st.write(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index())
 
 fig = px.histogram(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
                    x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
