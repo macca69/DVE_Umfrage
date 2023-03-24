@@ -82,7 +82,7 @@ with col7:
         barnorm=''
 
     fig2 = px.histogram(df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
-                       x=filter2, y='counts', color=filter3, barnorm='', text_auto='.1f', width=1000, height=750)
+                       x=filter2, y='counts', color=filter3, barnorm=barnorm, text_auto='.1f', width=1000, height=750)
 
     fig2.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.25, xanchor="left", x=0),
                       margin=dict(l=0, r=0, t=40, b=0))
