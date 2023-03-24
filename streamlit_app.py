@@ -58,7 +58,7 @@ st.write(filter1, filter2, filter3)
 #st.dataframe(df_slice_2, use_container_width=True)
 st.dataframe(df_slice_3, use_container_width=True)
 
-st.write(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(names=filter1))
+st.write(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index())
 
 fig = px.histogram(df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}),
                    x=filter1, y='counts', color=filter2, barnorm='', text_auto='.1f', width=1000, height=750)
