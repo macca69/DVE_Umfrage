@@ -28,21 +28,39 @@ df_1 = pd.read_csv('df_1.csv', index_col=0)
 
 unique_columns = df_1.columns.to_list()
 
-col3, col4 = st.columns(2)
+col3, col4, col5 = st.columns(3)
 
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
-
 with col3.expander('Kategorien wählen'):
-    x_axis_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].unique()), natsorted(df_1[filter1].unique()), label_visibility='collapsed')
+    filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].unique()), natsorted(df_1[filter1].unique()), label_visibility='collapsed')
 
-df_1 = df_1[df_1[filter1].isin(x_axis_items)]
+filter2 = col4.selectbox('Erster Filter', unique_columns, 2)
+with col4.expander('Kategorien wählen'):
+    filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
 
+filter3 = col5.selectbox('Erster Filter', unique_columns, 3)
+with col5.expander('Kategorien wählen'):
+    filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].unique()), natsorted(df_1[filter3].unique()), label_visibility='collapsed')
+
+df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
+df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
+df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
+
+
+st.dataframe(df_slice_1, use_container_width=True)
+st.dataframe(df_slice_2, use_container_width=True)
+st.dataframe(df_slice_3, use_container_width=True)
+
+st.stop() 
+                        
+                        
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
-
+with col4.expander('Kategorien wählen'):
+    y_axis_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1][filter_2].unique()), natsorted(df_1[filter1][filter_2].unique()), label_visibility='collapsed')
 
 if filter2 == 'keiner':
-    fig = px.histogram(df_1[filter1].value_counts().to_frame().rename(columns={filter1: 'counts'}).reset_index(names=filter1), x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
+    fig = px.histogram(df_1[filter1][filter2].value_counts().to_frame().rename(columns={filter1: 'counts'}).reset_index(names=filter1), x=filter1, y='counts', barnorm='', text_auto='.1f', width=1000, height=750)
     
 elif filter2 in mehrfach:
     
