@@ -60,6 +60,7 @@ with col3.expander('Kategorien wählen'):
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 if filter2 in mehrfach:
+    st.write(df_1[filter2])
     st.write(df_1[filter2].apply(string_to_list))
     st.stop()
 with col4.expander('Kategorien wählen'):
