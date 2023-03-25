@@ -85,12 +85,11 @@ with col7:
 
     fig2 = px.histogram(df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
                        x=filter2, y='counts', color=filter3, barnorm=barnorm, text_auto='.0f',
-                        title=filter2,
                         width=1000, height=750)
 
     fig2.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=50, b=0),
-                      title=dict(text=filter2, x=0.15))
+                      title=dict(text=filter2, x=0.15, font_size=25))
     fig2.update_xaxes(title=filter2.split(') ')[1], categoryarray=natsorted(filter2_items), categoryorder='array')
     fig2.update_yaxes(title='Anzahl')
     st.plotly_chart(fig2, use_container_width=True)
