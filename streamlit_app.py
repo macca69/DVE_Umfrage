@@ -72,7 +72,8 @@ with col6:
 
     fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=40, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.15, font_size=20))
+                     title=dict(text=filter2.split(') ')[1], x=0.15, font_size=20),
+                     legend_title_text='')
     fig.update_xaxes(title=filter1.split(') ')[1], categoryarray=natsorted(filter1_items), categoryorder='array')
     fig.update_yaxes(title='Anzahl')
     st.plotly_chart(fig, use_container_width=True)
