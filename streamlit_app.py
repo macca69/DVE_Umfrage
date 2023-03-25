@@ -75,7 +75,7 @@ with col6:
 
     fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.15, y=0.9, font_size=20),
+                     title=dict(text=filter2.split(') ')[1], x=0.15, y=0.95, font_size=20),
                      legend_title_text='')
     fig.update_xaxes(title=filter1.split(') ')[1], categoryarray=natsorted(filter1_items), categoryorder='array')
     fig.update_yaxes(title='Anzahl')
@@ -97,7 +97,7 @@ with col7:
 
     fig2.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=75, b=0),
-                      title=dict(text=filter3.split(') ')[1], x=0.15, y=0.9, font_size=20),
+                      title=dict(text=filter3.split(') ')[1], x=0.15, y=0.95, font_size=20),
                       legend_title_text='')
     fig2.update_xaxes(title=filter2.split(') ')[1], categoryarray=natsorted(filter2_items), categoryorder='array')
     fig2.update_yaxes(title='Anzahl')
