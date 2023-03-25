@@ -22,10 +22,13 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
 
     fig.update_layout(#legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.15, y=0.925, font_size=20),
+                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=20),
                      legend_title_text='')
+    
     fig.update_xaxes(title=filter1.split(') ')[1], categoryarray=natsorted(filter_items), categoryorder='array')
+    
     fig.update_yaxes(title='Anzahl', nticks=10, tickmode='auto')
+    
     st.plotly_chart(fig, use_container_width=True)
 
 mehrfach = ['5b) Fachlicher Schwerpunkt',
@@ -80,7 +83,7 @@ with col6:
         barnorm=''
 
     fig_data = df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
-    fig_data[filter1] = fig_data[filter1].str[:20]
+    #fig_data[filter1] = fig_data[filter1].str[:20]
     #fig_data[filter2] = fig_data[filter2].str[:20]
     
     plot_and_layout(fig_data, filter1, filter2, filter1_items, barnorm)
@@ -97,18 +100,6 @@ with col7:
     #fig2_data[filter3] = fig2_data[filter3].str[:20]
     
     plot_and_layout(fig2_data, filter2, filter3, filter2_items, barnorm)
-    
-    #fig2 = px.histogram(fig2_data,
-    #                   x=filter2, y='counts', color=filter3, barnorm=barnorm, text_auto='.0f',
-    #                    width=1000, height=750)
-
-    #fig2.update_layout(#legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
-    #                  margin=dict(l=0, r=0, t=75, b=0),
-    #                  title=dict(text=filter3.split(') ')[1], x=0.15, y=0.925, font_size=20),
-    #                  legend_title_text='')
-    #fig2.update_xaxes(title=filter2.split(') ')[1], categoryarray=natsorted(filter2_items), categoryorder='array')
-    #fig2.update_yaxes(title='Anzahl')
-    #st.plotly_chart(fig2, use_container_width=True)
 
 st.stop()
 
