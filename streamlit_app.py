@@ -73,7 +73,7 @@ with col6:
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
 
-    fig.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
+    fig.update_layout(#legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=75, b=0),
                      title=dict(text=filter2.split(') ')[1], x=0.15, y=0.925, font_size=20),
                      legend_title_text='')
@@ -95,7 +95,7 @@ with col7:
                        x=filter2, y='counts', color=filter3, barnorm=barnorm, text_auto='.0f',
                         width=1000, height=750)
 
-    fig2.update_layout(legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
+    fig2.update_layout(#legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=75, b=0),
                       title=dict(text=filter3.split(') ')[1], x=0.15, y=0.925, font_size=20),
                       legend_title_text='')
