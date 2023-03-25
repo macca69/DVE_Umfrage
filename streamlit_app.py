@@ -23,7 +23,8 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
     fig.update_layout(#legend=dict(orientation="v", yanchor="top", y=-0.1, xanchor="left", x=0.15),
                       margin=dict(l=0, r=0, t=75, b=0),
                      title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=20),
-                     legend_title_text='')
+                     legend_title_text='',
+                     font=dict(size=25))
     
     fig.update_xaxes(title=filter1.split(') ')[1], categoryarray=natsorted(filter_items), categoryorder='array')
     
