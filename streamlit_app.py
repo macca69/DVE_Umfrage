@@ -24,6 +24,7 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
                       margin=dict(l=0, r=0, t=75, b=0),
                      title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=20),
                      legend_title_text='',
+                     legend_font_size=15,
                      font=dict(size=15))
     
     fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(filter_items), categoryorder='array')
