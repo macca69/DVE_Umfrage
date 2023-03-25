@@ -68,7 +68,7 @@ with col6:
 
     fig_data = df_slice_2[[filter1, filter2]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
     fig_data[filter1] = fig_data[filter1].str[:20]
-    fig_data[filter2] = fig_data[filter2].str[:20]
+    #fig_data[filter2] = fig_data[filter2].str[:20]
     fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
@@ -87,7 +87,11 @@ with col7:
     else:
         barnorm=''
 
-    fig2 = px.histogram(df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index(),
+    fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
+    fig2_data[filter2] = fig2_data[filter2].str[:20]
+    #fig2_data[filter3] = fig2_data[filter3].str[:20]
+    
+    fig2 = px.histogram(fig2_data,
                        x=filter2, y='counts', color=filter3, barnorm=barnorm, text_auto='.0f',
                         width=1000, height=750)
 
