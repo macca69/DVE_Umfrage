@@ -26,9 +26,9 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
                      legend_title_text='',
                      font=dict(size=20))
     
-    fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=20, categoryarray=natsorted(filter_items), categoryorder='array')
+    fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(filter_items), categoryorder='array')
     
-    fig.update_yaxes(title='Anzahl', nticks=20, tickmode='auto')
+    fig.update_yaxes(title='Anzahl', , titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     
     st.plotly_chart(fig, use_container_width=True)
 
