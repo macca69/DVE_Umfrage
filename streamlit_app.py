@@ -88,7 +88,7 @@ with col7:
         barnorm=''
 
     fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
-    fig2_data[filter2] = fig2_data[filter2].str[:20]
+    #fig2_data[filter2] = fig2_data[filter2].str[:20]
     #fig2_data[filter3] = fig2_data[filter3].str[:20]
     
     fig2 = px.histogram(fig2_data,
