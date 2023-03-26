@@ -9,28 +9,8 @@ def load_csv():
     
     df_1 = pd.read_csv('df_1.csv', index_col=0)
     
-    mehrfach = ['5b) Fachlicher Schwerpunkt',
-            '6b) Ich arbeite auch am...',
-            '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
-            '15b) Wesentliche Verschlechterungen der Arbeitsbedingungen in den letzten 2 Jahren',
-            '15c) Wesentliche Verbesserungen der Arbeitsbedingungen in den letzten 2 Jahren',
-            '18a) Welche Serviceleistungen des DVE für Angestellte sind Ihnen bekannt?',
-            '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
-    
-    for column in mehrfach:
-        try:
-            df_1[column] = df_1[column].apply(string_to_list)
-            
-        except:
-            st.write(df_1[column])
-            
-            df_1.loc[df_1[column].isna(), column] = df_1.loc[df_1[column].isna(), column].apply(lambda x: ['k.A.'])# if x is None else x)
-            
-            st.write(df_1[column])
-          
-            df_1[column] = df_1[column].apply(string_to_list)
         
-    return mehrfach, df_1
+    return df_1
     
 def flatten(l):
     return [item for sublist in l for item in sublist]
@@ -65,12 +45,20 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
 
 st.set_page_config(layout="wide")
 
+mehrfach = ['5b) Fachlicher Schwerpunkt',
+            '6b) Ich arbeite auch am...',
+            '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
+            '15b) Wesentliche Verschlechterungen der Arbeitsbedingungen in den letzten 2 Jahren',
+            '15c) Wesentliche Verbesserungen der Arbeitsbedingungen in den letzten 2 Jahren',
+            '18a) Welche Serviceleistungen des DVE für Angestellte sind Ihnen bekannt?',
+            '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
+
 col1, col2 = st.columns(2)
 image = Image.open('DVE_logo.png')
 col1.image(image)
 col2.title('Umfrage 2022:sunglasses:')
 
-mehrfach, df_1 = load_csv()
+df_1 = load_csv()
 
 st.dataframe(df_1)
 
@@ -85,7 +73,12 @@ unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
 with col4.expander('Kategorien wählen'):
-    filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
+    if filter2 in mehrfach:
+        st.write(df_1[filter2].unique())
+        stop()
+        
+    else:
+        filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
 
 unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
 filter3 = col5.selectbox('Dritter Filter', unique_columns, 3)
@@ -103,8 +96,13 @@ with st.expander('Datensatz'):
     
 #########################################################
 
-#if filter2 in mehrfach:
-#    df_1[filter2] = df_1[filter2].apply(string_to_list)
+if filter2 in mehrfach:
+    try:
+        df_1[filter2] = df_1[filter2].apply(string_to_list)
+    
+    except:
+        df_1.loc[df_1[column].isna(), column] = df_1.loc[df_1[column].isna(), column].apply(lambda x: ['k.A.'])
+        df_1[column] = df_1[column].apply(string_to_list)
 
 temporary_2 = []
 
