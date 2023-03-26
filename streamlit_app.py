@@ -60,11 +60,6 @@ with col3.expander('Kategorien wählen'):
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
-if filter2 in mehrfach:
-    st.write(df_1[filter2])
-    st.write(df_1[filter2].apply(string_to_list))
-    st.write(flatten(df_1[filter2].apply(string_to_list)).value_counts())
-    st.stop()
 with col4.expander('Kategorien wählen'):
     filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
 
@@ -81,6 +76,13 @@ with st.expander('Datensatz'):
     #st.dataframe(df_slice_1, use_container_width=True)
     #st.dataframe(df_slice_2, use_container_width=True)
     st.dataframe(df_slice_3, use_container_width=True)
+    
+    
+if filter2 in mehrfach:
+    st.write(df_1[filter2])
+    st.write(df_1[filter2].apply(string_to_list))
+    st.write(pd.Series(flatten(df_1[filter2].apply(string_to_list))).value_counts())
+    st.stop()
     
 col6, col7 = st.columns(2)
 
