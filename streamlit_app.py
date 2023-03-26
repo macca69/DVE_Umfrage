@@ -79,12 +79,17 @@ with st.expander('Datensatz'):
     
 #########################################################
 
+temporary_2 = []
+
 for ii in filter1_items:
-    
-    st.write(df_1[df_1[filter1]==ii])
-    st.write(df_1[df_1[filter1]==ii].apply(string_to_list))
-    st.write(pd.Series(flatten(df_1[df_1[filter1]==ii].apply(string_to_list))).value_counts())
-    st.stop()
+    temporary_1 = df_1[df_1[filter1]==ii])
+    if filter2 in mehrfach:
+        st.write(temporary_1[filter2]].apply(string_to_list))
+        temporary_2.append(pd.Series(flatten([k for k in temporary_1[filter2]])).value_counts().to_frame().assign(filter1=ii))
+        
+temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
+st.write(temporary_2)
+st.stop()
     
 col6, col7 = st.columns(2)
 
