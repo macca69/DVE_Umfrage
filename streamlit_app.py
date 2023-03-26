@@ -71,7 +71,11 @@ with col4.expander('Kategorien wählen'):
         
         unique_elements=[]
         for list_element in list_of_lists:
-            unique_elements = unique_elements + list_element
+            try:
+                unique_elements = unique_elements + list_element
+            except:
+                st.write(list_element)
+                
         st.write(unique_elements)
         st.stop()
         
