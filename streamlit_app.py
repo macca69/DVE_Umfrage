@@ -36,7 +36,12 @@ def flatten(l):
 
 # Define a custom function to convert strings to lists
 def string_to_list(string):
-    return eval(string)
+    try:
+        return eval(string)
+    except:
+        st.write('eval error!', string)
+        st.stop()
+    #return eval(string)
 
 def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
     fig = px.histogram(fig_data,
