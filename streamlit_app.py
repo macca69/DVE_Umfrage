@@ -66,13 +66,12 @@ unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
 with col4.expander('Kategorien wählen'):
+    
     if filter2 in mehrfach:
-        list_of_lists = list(df_1[filter2].unique())
-        
-        st.write(list_of_lists)
+        st.write(df_1[filter2].unique())
         
         unique_elements=[]
-        for list_element in list_of_lists:
+        for list_element in df_1[filter2].unique():
             try:
                 unique_elements = unique_elements + list_element
             except:
