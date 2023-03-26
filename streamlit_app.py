@@ -20,15 +20,14 @@ def load_csv():
     for column in mehrfach:
         try:
             df_1[column] = df_1[column].apply(string_to_list)
+            
         except:
-            df_1[column] = df_1[column].fillna('k.A.')
-            
             st.write(df_1[column])
             
-            df_1.loc[(df_1[column]=='k.A.').index, column] = df_1.loc[(df_1[column]=='k.A.').index, column].apply(lambda x: [[x]])
+            df_1.loc[df_1[column].isna(), 'B'] = df_1.loc[df_1[column].isna(), column].apply(lambda x: ['k.A.'] if x is None else x)
             
             st.write(df_1[column])
-            
+          
             df_1[column] = df_1[column].apply(string_to_list)
         
     return mehrfach, df_1
