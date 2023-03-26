@@ -68,8 +68,9 @@ filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 with col4.expander('Kategorien wählen'):
     
     if filter2 in mehrfach:
-        st.write(df_1[filter2].unique())
-        st.write(df_1[filter2].unique()[0]+df_1[filter2].unique()[1])
+        list_of_uniques=list(df_1[filter2].unique())
+        st.write(list_of_uniques)
+        st.write(list_of_uniques[0]+list_of_uniques[1])
         
         #st.write(flatten([k for k in df_1[filter2].unique()]))
         
