@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 from natsort import natsorted
 
-@st.cache_data
+#@st.cache_data
 def load_csv():
     
     df_1 = pd.read_csv('df_1.csv', index_col=0)
@@ -20,7 +20,7 @@ def load_csv():
     for column in mehrfach:
         try:
             df_1[column] = df_1[column].apply(string_to_list)
-        expect:
+        except:
             st.write(column)
         
     return df_1
