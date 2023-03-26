@@ -83,7 +83,7 @@ for ii in filter1_items:
     
     st.write(df_1[df_1[filter1]==ii])
     st.write(df_1[df_1[filter1]==ii].apply(string_to_list))
-    st.write(pd.Series(flatten(df_1[df_1.[filter1]==ii].apply(string_to_list))).value_counts())
+    st.write(pd.Series(flatten(df_1[df_1[filter1]==ii].apply(string_to_list))).value_counts())
     st.stop()
     
 col6, col7 = st.columns(2)
