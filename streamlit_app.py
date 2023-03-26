@@ -95,9 +95,9 @@ for ii in filter1_items:
         
 temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
 st.write(temporary_2)
-plot_and_layout(temporary_2, filter1, filter2, filter1_items, barnorm)
+plot_and_layout(temporary_2, filter1, filter2, filter1_items, False)
 st.stop()
-    
+###########################################################    
 col6, col7 = st.columns(2)
 
 with col6:
