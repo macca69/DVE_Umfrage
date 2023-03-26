@@ -71,14 +71,13 @@ with col4.expander('Kategorien wählen'):
         df_temporary = df_1.copy()
         try:
             df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
-    
         except:
             df_temporary.loc[df_temporary[column].isna(), column] = df_temporary.loc[df_temporary[column].isna(), column].apply(lambda x: ['k.A.'])
             df_temporary[column] = df_temporary[column].apply(string_to_list)
 
-        st.write(list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]]))))
+        unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
         
-        filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
+        filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
         
     else:
         filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
