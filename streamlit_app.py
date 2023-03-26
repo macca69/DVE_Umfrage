@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 from natsort import natsorted
 
-@st.experimental_memo
+@st.cache_data
 def load_csv():
     return pd.read_csv('df_1.csv', index_col=0)
     
