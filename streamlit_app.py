@@ -6,11 +6,7 @@ from natsort import natsorted
 
 #@st.cache_data
 def load_csv():
-    
-    df_1 = pd.read_csv('df_1.csv', index_col=0)
-    
-        
-    return df_1
+    return pd.read_csv('df_1.csv', index_col=0)
     
 def flatten(l):
     return [item for sublist in l for item in sublist]
@@ -21,9 +17,6 @@ def string_to_list(string):
         return eval(string)
     except:
         return string
-        #st.write('eval error!', string)
-        #st.stop()
-    #return eval(string)
 
 def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
     fig = px.histogram(fig_data,
@@ -74,7 +67,7 @@ filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
 with col4.expander('Kategorien wählen'):
     if filter2 in mehrfach:
-        st.write(flatten(list(df_1[filter2].unique())))
+        st.write(list(df_1[filter2].unique()))
         st.stop()
         
     else:
