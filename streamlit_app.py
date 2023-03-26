@@ -23,7 +23,7 @@ def load_csv():
         except:
             st.write(column)
         
-    return df_1
+    return mehrfach, df_1
     
 def flatten(l):
     return [item for sublist in l for item in sublist]
@@ -50,14 +50,6 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
     
     st.plotly_chart(fig, use_container_width=True)
 
-mehrfach = ['5b) Fachlicher Schwerpunkt',
-            '6b) Ich arbeite auch am...',
-            '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
-            '15b) Wesentliche Verschlechterungen der Arbeitsbedingungen in den letzten 2 Jahren',
-            '15c) Wesentliche Verbesserungen der Arbeitsbedingungen in den letzten 2 Jahren',
-            '18a) Welche Serviceleistungen des DVE für Angestellte sind Ihnen bekannt?',
-            '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
-
 st.set_page_config(layout="wide")
 
 col1, col2 = st.columns(2)
@@ -65,7 +57,9 @@ image = Image.open('DVE_logo.png')
 col1.image(image)
 col2.title('Umfrage 2022:sunglasses:')
 
-df_1 = load_csv()
+mehrfach, df_1 = load_csv()
+
+st.dataframe(df_1)
 
 col3, col4, col5 = st.columns(3)
 
@@ -96,8 +90,8 @@ with st.expander('Datensatz'):
     
 #########################################################
 
-if filter2 in mehrfach:
-    df_1[filter2] = df_1[filter2].apply(string_to_list)
+#if filter2 in mehrfach:
+#    df_1[filter2] = df_1[filter2].apply(string_to_list)
 
 temporary_2 = []
 
