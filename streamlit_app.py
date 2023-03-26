@@ -23,6 +23,8 @@ def load_csv():
         except:
             df_1[column] = df_1[column].fillna({column: ['k.A.']})
             
+            st.write(df_1[column])
+            
             df_1[column] = df_1[column].apply(string_to_list)
         
     return mehrfach, df_1
