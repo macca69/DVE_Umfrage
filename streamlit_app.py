@@ -77,11 +77,13 @@ with st.expander('Datensatz'):
     #st.dataframe(df_slice_2, use_container_width=True)
     st.dataframe(df_slice_3, use_container_width=True)
     
+#########################################################
+
+for ii in filter1_items:
     
-if filter2 in mehrfach:
-    st.write(df_1[filter2])
-    st.write(df_1[filter2].apply(string_to_list))
-    st.write(pd.Series(flatten(df_1[filter2].apply(string_to_list))).value_counts())
+    st.write(df_1[df_1[filter1]==ii])
+    st.write(df_1[df_1.[filter1]==ii].apply(string_to_list))
+    st.write(pd.Series(flatten(df_1[df_1.[filter1]==ii].apply(string_to_list))).value_counts())
     st.stop()
     
 col6, col7 = st.columns(2)
