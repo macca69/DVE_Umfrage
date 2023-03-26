@@ -69,12 +69,14 @@ with col4.expander('Kategorien wählen'):
     if filter2 in mehrfach:
         list_of_lists = list(df_1[filter2].unique())
         
+        st.write(list_of_lists)
+        
         unique_elements=[]
         for list_element in list_of_lists:
             try:
                 unique_elements = unique_elements + list_element
             except:
-                st.write(list_element)
+                st.write('Error', list_element)
                 
         st.write(unique_elements)
         st.stop()
