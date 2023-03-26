@@ -70,7 +70,7 @@ with col4.expander('Kategorien wählen'):
     if filter2 in mehrfach:
         list_of_uniques=list(df_1[filter2].unique())
         st.write(list_of_uniques)
-        st.write(list_of_uniques[0]+list_of_uniques[1])
+        st.write(list_of_uniques[0][0]+list_of_uniques[1][0])
         
         #st.write(flatten([k for k in df_1[filter2].unique()]))
         
