@@ -21,7 +21,8 @@ def load_csv():
         try:
             df_1[column] = df_1[column].apply(string_to_list)
         except:
-            df_1[column].fillna(value=['k.A.'], inplace=True)
+            df[column] = df[column].fillna(['k.A.'])
+            
             df_1[column] = df_1[column].apply(string_to_list)
         
     return mehrfach, df_1
