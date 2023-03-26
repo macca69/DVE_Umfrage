@@ -81,6 +81,7 @@ with st.expander('Datensatz'):
 
 if filter2 in mehrfach:
     temporary_1 = df_1[filter2].apply(string_to_list)
+    st.write(temporary_1)
 
 temporary_2 = []
 
