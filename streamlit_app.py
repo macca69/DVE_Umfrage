@@ -93,7 +93,7 @@ for ii in filter1_items:
         temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
     else:
         #st.write([k for k in temporary_3[filter2]])
-        temporary_2.append(pd.Series([k for k in temporary_3[filter2]).value_counts().to_frame().assign(filter1=ii))
+        temporary_2.append(pd.Series([k for k in temporary_3[filter2]]).value_counts().to_frame().assign(filter1=ii))
         
 temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
 st.write(temporary_2)
