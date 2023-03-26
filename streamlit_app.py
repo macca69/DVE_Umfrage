@@ -25,7 +25,7 @@ def load_csv():
             
             st.write(df_1[column])
             
-            df_1[column] = df_1[column].apply(lambda x: list(x))
+            df_1.loc[(df_1[column]=='k.A.').index, column] = df_1.loc[(df_1[column]=='k.A.').index, column].apply(lambda x: list(x))
             
             df_1[column] = df_1[column].apply(string_to_list)
         
