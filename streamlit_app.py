@@ -24,7 +24,7 @@ def load_csv():
         except:
             st.write(df_1[column])
             
-            df_1.loc[df_1[column].isna(), column] = df_1.loc[df_1[column].isna(), column].apply(lambda x: ['k.A.'] if x is None else x)
+            df_1.loc[df_1[column].isna(), column] = df_1.loc[df_1[column].isna(), column].apply(lambda x: ['k.A.'])# if x is None else x)
             
             st.write(df_1[column])
           
