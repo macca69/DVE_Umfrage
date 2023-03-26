@@ -18,7 +18,10 @@ def load_csv():
             '18b) Welche Serviceleistungen des DVE für Angestellte haben Sie im letzten Jahren genutzt?']
     
     for column in mehrfach:
-        df_1[column] = df_1[column].apply(string_to_list)
+        try:
+            df_1[column] = df_1[column].apply(string_to_list)
+        expect:
+            st.write(column)
         
     return df_1
     
