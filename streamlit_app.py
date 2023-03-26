@@ -67,7 +67,9 @@ filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
 with col4.expander('Kategorien wählen'):
     if filter2 in mehrfach:
-        st.write(list(df_1[filter2].unique()))
+        list_of_lists = list(df_1[filter2].unique())
+        st.write([item for sublist in list_of_lists for item in sublist])
+       
         st.stop()
         
     else:
