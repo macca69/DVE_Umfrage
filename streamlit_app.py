@@ -21,9 +21,11 @@ def load_csv():
         try:
             df_1[column] = df_1[column].apply(string_to_list)
         except:
-            df_1[column] = df_1[column].fillna({column: ['k.A.']})
+            df_1[column] = df_1[column].fillna('k.A.')
             
             st.write(df_1[column])
+            
+            df_1[column] = df_1[column].apply(lambda x: list(x))
             
             df_1[column] = df_1[column].apply(string_to_list)
         
