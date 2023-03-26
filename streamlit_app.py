@@ -81,7 +81,6 @@ with st.expander('Datensatz'):
 
 if filter2 in mehrfach:
     df_1[filter2] = df_1[filter2].apply(string_to_list)
-    
 
 temporary_2 = []
 
@@ -89,9 +88,8 @@ st.write(filter1_items)
 
 for ii in filter1_items:
     temporary_3 = df_1[df_1[filter1]==ii]
-    if filter2 in mehrfach:
-        st.write(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
-        temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
+    #if filter2 in mehrfach:
+    temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
         
 temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
 st.write(temporary_2)
