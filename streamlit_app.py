@@ -68,9 +68,7 @@ filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 with col4.expander('Kategorien wählen'):
     
     if filter2 in mehrfach:
-        st.write(flatten([k for k in df_1[filter2]]))
-        
-        st.stop()
+        filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
         
     else:
         filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
@@ -106,7 +104,7 @@ st.write(filter1_items)
 for ii in filter1_items:
     temporary_3 = df_1[df_1[filter1]==ii]
     if filter2 in mehrfach:
-        #st.write([k for k in temporary_3[filter2]])
+        st.write(flatten([k for k in temporary_3[filter2]]))
         temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
     else:
         #st.write([k for k in temporary_3[filter2]])
