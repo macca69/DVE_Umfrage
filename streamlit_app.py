@@ -9,6 +9,8 @@ def load_csv():
     
     df_1 = pd.read_csv('df_1.csv', index_col=0)
     
+    df_1.fillna(value='k.A.', inplace=True)
+    
     mehrfach = ['5b) Fachlicher Schwerpunkt',
             '6b) Ich arbeite auch am...',
             '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
