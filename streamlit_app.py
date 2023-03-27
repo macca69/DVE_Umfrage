@@ -141,7 +141,7 @@ st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
 st.text("p-Wert = " + str(p_val))
 st.text("Freiheitsgrade = " + str(dof))
 st.text("Erwartete Häufigkeiten = ")
-st.table(np.int(expected))
+st.table(np.array(expected).astype(int))
 
 # Interpretiere die Ergebnisse
 alpha = 0.05
