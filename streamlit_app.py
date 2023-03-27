@@ -123,35 +123,30 @@ for ii in filter1_items:
         
 temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
 
-st.write(temporary_2)
-st.table(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
+col6, col7 = st.columns(2)
 
-observed = [[30, 100, 20],
-            [40, 150, 30],
-            [20, 80, 10],
-            [10, 30, 10]]
+with col5:
+    #st.write(temporary_2)
+    st.table(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
-#st.table(observed)
+    # Führe den Chi-Quadrat-Test für Zusammenhänge durch
+    chi2_stat, p_val, dof, expected = chi2_contingency(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
-# Führe den Chi-Quadrat-Test für Zusammenhänge durch
-#chi2_stat, p_val, dof, expected = chi2_contingency(observed)
-chi2_stat, p_val, dof, expected = chi2_contingency(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
+    # Gib die Testergebnisse aus
+    st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
+    st.text("p-Wert = " + str(p_val))
+    st.text("Freiheitsgrade = " + str(dof))
+    st.text("Erwartete Häufigkeiten = ")
+    st.table(np.array(expected).astype(int))
 
-# Gib die Testergebnisse aus
-st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
-st.text("p-Wert = " + str(p_val))
-st.text("Freiheitsgrade = " + str(dof))
-st.text("Erwartete Häufigkeiten = ")
-st.table(np.array(expected).astype(int))
+    # Interpretiere die Ergebnisse
+    alpha = 0.05
+    if p_val < alpha:
+        st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+    else:
+        st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
 
-# Interpretiere die Ergebnisse
-alpha = 0.05
-if p_val < alpha:
-    st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
-else:
-    st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
-
-plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
+    plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
 st.stop()
 ###########################################################    
 col6, col7 = st.columns(2)
