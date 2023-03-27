@@ -54,8 +54,7 @@ col1.image(image)
 col2.title('Umfrage 2022:sunglasses:')
 
 df_1 = load_csv()
-
-st.dataframe(df_1)
+#st.dataframe(df_1)
 
 col3, col4, col5 = st.columns(3)
 
