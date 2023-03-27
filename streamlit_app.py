@@ -3,6 +3,7 @@ import plotly.express as px
 import streamlit as st
 from PIL import Image
 from natsort import natsorted
+from scipy.stats import chi2_contingency
 
 #@st.cache_data
 def load_csv():
@@ -130,6 +131,25 @@ observed = [[30, 100, 20],
             [10, 30, 10]]
 
 st.table(observed)
+
+# Führe den Chi-Quadrat-Test für Zusammenhänge durch
+chi2_stat, p_val, dof, expected = chi2_contingency(observed)
+
+# Gib die Testergebnisse aus
+print("Chi-Quadrat-Statistik = ", chi2_stat)
+print("p-Wert = ", p_val)
+print("Freiheitsgrade = ", dof)
+print("Erwartete Häufigkeiten = ")
+print(expected)
+
+# Interpretiere die Ergebnisse
+alpha = 0.05
+if p_val < alpha:
+    print("Es gibt einen signifikanten Zusammenhang zwischen Haarfarbe und Augenfarbe.")
+else:
+    print("Es gibt keinen signifikanten Zusammenhang zwischen Haarfarbe und Augenfarbe.")
+
+
 
 plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
 st.stop()
