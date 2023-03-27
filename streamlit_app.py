@@ -130,10 +130,11 @@ observed = [[30, 100, 20],
             [20, 80, 10],
             [10, 30, 10]]
 
-st.table(observed)
+#st.table(observed)
 
 # Führe den Chi-Quadrat-Test für Zusammenhänge durch
-chi2_stat, p_val, dof, expected = chi2_contingency(observed)
+#chi2_stat, p_val, dof, expected = chi2_contingency(observed)
+chi2_stat, p_val, dof, expected = chi2_contingency(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
 # Gib die Testergebnisse aus
 st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
