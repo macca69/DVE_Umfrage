@@ -124,6 +124,13 @@ temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filt
 st.write(temporary_2)
 st.table(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
+observed = [[30, 100, 20],
+            [40, 150, 30],
+            [20, 80, 10],
+            [10, 30, 10]]
+
+st.table(observed)
+
 plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
 st.stop()
 ###########################################################    
