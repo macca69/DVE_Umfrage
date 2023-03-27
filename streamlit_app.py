@@ -136,20 +136,18 @@ st.table(observed)
 chi2_stat, p_val, dof, expected = chi2_contingency(observed)
 
 # Gib die Testergebnisse aus
-print("Chi-Quadrat-Statistik = ", chi2_stat)
-print("p-Wert = ", p_val)
-print("Freiheitsgrade = ", dof)
-print("Erwartete Häufigkeiten = ")
-print(expected)
+st.text("Chi-Quadrat-Statistik = ", chi2_stat)
+st.text("p-Wert = ", p_val)
+st.text("Freiheitsgrade = ", dof)
+st.text("Erwartete Häufigkeiten = ")
+st.text(expected)
 
 # Interpretiere die Ergebnisse
 alpha = 0.05
 if p_val < alpha:
-    print("Es gibt einen signifikanten Zusammenhang zwischen Haarfarbe und Augenfarbe.")
+    st.text("Es gibt einen signifikanten Zusammenhang zwischen Haarfarbe und Augenfarbe.")
 else:
-    print("Es gibt keinen signifikanten Zusammenhang zwischen Haarfarbe und Augenfarbe.")
-
-
+    st.text("Es gibt keinen signifikanten Zusammenhang zwischen Haarfarbe und Augenfarbe.")
 
 plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
 st.stop()
