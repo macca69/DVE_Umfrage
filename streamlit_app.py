@@ -125,7 +125,8 @@ temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filt
 
 col6, col7 = st.columns(2)
 
-with col5:
+with col6:
+    plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
     #st.write(temporary_2)
     st.table(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
@@ -146,7 +147,6 @@ with col5:
     else:
         st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
 
-    plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
 st.stop()
 ###########################################################    
 col6, col7 = st.columns(2)
