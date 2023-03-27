@@ -140,7 +140,8 @@ chi2_stat, p_val, dof, expected = chi2_contingency(temporary_2.pivot(index=filte
 st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
 st.text("p-Wert = " + str(p_val))
 st.text("Freiheitsgrade = " + str(dof))
-st.text("Erwartete Häufigkeiten = " + str(expected))
+st.text("Erwartete Häufigkeiten = ")
+st.table(np.int(expected))
 
 # Interpretiere die Ergebnisse
 alpha = 0.05
