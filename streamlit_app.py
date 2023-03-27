@@ -145,9 +145,9 @@ st.text("Erwartete Häufigkeiten = " + str(expected))
 # Interpretiere die Ergebnisse
 alpha = 0.05
 if p_val < alpha:
-    st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2 + " und " + filter1)
+    st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
 else:
-    st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2 + " und " + filter1)
+    st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
 
 plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
 st.stop()
