@@ -136,11 +136,10 @@ st.table(observed)
 chi2_stat, p_val, dof, expected = chi2_contingency(observed)
 
 # Gib die Testergebnisse aus
-st.text("Chi-Quadrat-Statistik = ", chi2_stat)
-st.text("p-Wert = ", p_val)
-st.text("Freiheitsgrade = ", dof)
-st.text("Erwartete Häufigkeiten = ")
-st.text(expected)
+st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
+st.text("p-Wert = " + str(p_val))
+st.text("Freiheitsgrade = " + str(dof))
+st.text("Erwartete Häufigkeiten = " + str(expected))
 
 # Interpretiere die Ergebnisse
 alpha = 0.05
