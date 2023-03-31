@@ -127,7 +127,7 @@ col6, col7 = st.columns(2)
 with col6:
     plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
     #st.write(temporary_2)
-    st.table(np.array(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int))
+    st.table(pd.DataFrame(np.array(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int), columns=filter2_items, index=filter1_items))
 
     # Führe den Chi-Quadrat-Test für Zusammenhänge durch
     chi2_stat, p_val, dof, expected = chi2_contingency(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
