@@ -136,8 +136,8 @@ with col6:
     st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
     st.text("p-Wert = " + str(p_val))
     st.text("Freiheitsgrade = " + str(dof))
-    st.text("Erwartete Häufigkeiten = ")
-    st.table(np.array(expected).astype(int))
+    st.text("Erwartete Häufigkeiten")
+    st.table(pd.DataFrame(np.array(expected).astype(int), columns=filter2_items, index=filter1_items))
 
     # Interpretiere die Ergebnisse
     alpha = 0.05
