@@ -99,6 +99,7 @@ with st.expander('Datensatz'):
     
 #########################################################
 
+# Neuer Ansatz
 if filter2 in mehrfach:
     try:
         df_1[filter2] = df_1[filter2].apply(string_to_list)
@@ -108,8 +109,6 @@ if filter2 in mehrfach:
         df_1[column] = df_1[column].apply(string_to_list)
 
 temporary_2 = []
-
-st.write(filter1_items)
 
 for ii in filter1_items:
     temporary_3 = df_1[df_1[filter1]==ii]
