@@ -124,13 +124,10 @@ for ii in filter1_items:
     temporary_3 = df_1[df_1[filter1]==ii]
     
     if filter2 in mehrfach:
-        st.write(flatten([k for k in temporary_3[filter2]]))
-        
         occurrences = [word for word in flatten([k for k in temporary_3[filter2]]) if word in filter2_items]
         st.write(occurrences)
-        st.stop()
-        
-        temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
+        #temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
+        temporary_2.append(pd.Series(occurrences).value_counts().to_frame().assign(filter1=ii))
     
     else:
         #st.write([k for k in temporary_3[temporary_3[filter2].isin(filter2_items)]])
