@@ -156,11 +156,17 @@ temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filt
 col6, col7 = st.columns(2)
 
 with col6:
+    st.write(temporary_2)
     plot_and_layout(temporary_2, filter1, filter2, '')
-    #st.write(temporary_2)
     significance_test(temporary_2)
     
+# Create slices with filter1 and filter2
 
+with col7:
+    plot_and_layout(temporary_2, filter1, filter2, '')
+    significance_test(temporary_2)
+    
+    
 st.stop()
 ###########################################################    
 col6, col7 = st.columns(2)
