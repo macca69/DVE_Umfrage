@@ -163,7 +163,8 @@ with col6:
     plot_and_layout(temporary_2, filter1, filter2, '')
     significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
     
-# Create slices with filter1 and filter2
+# Create slices with filter2 and filter3
+if filter2 in mehrfach: st.stop()
 
 with col7:
     fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
