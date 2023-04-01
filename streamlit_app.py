@@ -156,15 +156,16 @@ temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filt
 col6, col7 = st.columns(2)
 
 with col6:
-    st.write(temporary_2)
+    #st.write(temporary_2)
     plot_and_layout(temporary_2, filter1, filter2, '')
     significance_test(temporary_2)
     
 # Create slices with filter1 and filter2
 
 with col7:
-    plot_and_layout(temporary_2, filter1, filter2, '')
-    significance_test(temporary_2)
+    fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
+    plot_and_layout(fig2_data, filter2, filter3, '')
+    significance_test(fig2_data)
     
     
 st.stop()
