@@ -44,7 +44,7 @@ st.set_page_config(layout="wide")
 st.markdown("""
 <style>
 .medium-size-font {
-    font-size:30px !important;
+    font-size:20px !important;
 }
 </style>
 """, unsafe_allow_html=True)
