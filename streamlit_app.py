@@ -59,6 +59,7 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
         st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
     
 #######################################################################################################################################################
+st.set_page_config(layout="wide")
 
 mehrfach = ['5b) Fachlicher Schwerpunkt',
             '6b) Ich arbeite auch am...',
