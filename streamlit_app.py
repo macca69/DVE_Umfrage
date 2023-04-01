@@ -73,6 +73,7 @@ with col4.expander('Kategorien wählen'):
         try:
             df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
         except:
+            st.write(column)
             df_temporary.loc[df_temporary[column].isna(), column] = df_temporary.loc[df_temporary[column].isna(), column].apply(lambda x: ['k.A.'])
             df_temporary[column] = df_temporary[column].apply(string_to_list)
 
