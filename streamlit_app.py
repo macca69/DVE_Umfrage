@@ -70,14 +70,16 @@ with col4.expander('Kategorien wählen'):
     
     if filter2 in mehrfach:
         df_temporary = df_1.copy()
-        try:
+        
+        if df_temporary[filter2].isnull().any():
+            st.write(column)
+            df_temporary.loc[df_temporary[filter2].isna(), filter2] = df_temporary.loc[df_temporary[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
+            df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
+            
+        else:
             df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
             st.write(df_temporary[filter2])
-        except:
-            st.write(column)
-            df_temporary.loc[df_temporary[column].isna(), column] = df_temporary.loc[df_temporary[column].isna(), column].apply(lambda x: ['k.A.'])
-            df_temporary[column] = df_temporary[column].apply(string_to_list)
-
+        
         st.write([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])
         
         unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
