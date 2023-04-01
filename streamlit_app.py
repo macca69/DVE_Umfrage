@@ -87,6 +87,8 @@ with col3.expander('Kategorien wählen'):
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
+if filter2 in mehrfach: st.markdown(':Mehrfachnennungen[colored red]')
+
 with col4.expander('Kategorien wählen'):
     
     if filter2 in mehrfach:
@@ -142,12 +144,9 @@ for ii in filter1_items:
     
     if filter2 in mehrfach:
         occurrences = [word for word in flatten([k for k in temporary_3[filter2]]) if word in filter2_items]
-        #temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
         temporary_2.append(pd.Series(occurrences).value_counts().to_frame().assign(filter1=ii))
     
     else:
-        #st.write([k for k in temporary_3[temporary_3[filter2].isin(filter2_items)]])
-        #temporary_2.append(pd.Series([k for k in temporary_3[filter2]]).value_counts().to_frame().assign(filter1=ii))
         temporary_2.append(pd.Series([k for k in temporary_3[temporary_3[filter2].isin(filter2_items)][filter2]]).value_counts().to_frame().assign(filter1=ii))
         
 temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
