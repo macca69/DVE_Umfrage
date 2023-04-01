@@ -58,7 +58,7 @@ df_1 = load_csv()
 
 col3, col4, col5 = st.columns(3)
 
-# Widgets
+# WIDGETS
 
 # Filter #1
 unique_columns = df_1.columns.to_list()
@@ -81,7 +81,7 @@ with col4.expander('Kategorien wählen'):
             
         else:
             df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
-            st.write(df_temporary[filter2])
+            #st.write(df_temporary[filter2])
         
         unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
         filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
@@ -115,7 +115,7 @@ if filter2 in mehrfach:
             
     else:
         df_1[filter2] = df_1[filter2].apply(string_to_list)
-        st.write(df_1[filter2])
+        #st.write(df_1[filter2])
 
 # Create slices with filter1 and filter2
 temporary_2 = []
