@@ -114,6 +114,7 @@ with col4.expander('Kategorien wählen'):
 # Filter #3
 unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
 filter3 = col5.selectbox('Dritter Filter', unique_columns, 3)
+
 with col5.expander('Kategorien wählen'):
     filter3_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].unique()), natsorted(df_1[filter3].unique()), label_visibility='collapsed')
 
