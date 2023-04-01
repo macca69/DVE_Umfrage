@@ -37,7 +37,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
     st.plotly_chart(fig, use_container_width=True)
     
 def significance_test(df, filter1, filter2, filter1_items, filter2_items):
-    st.dataframe(pd.DataFrame(np.array(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int), columns=filter2_items, index=filter1_items))
+    st.dataframe(pd.DataFrame(np.array(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int), columns=filter2_items, index=filter1_items),  use_container_width=True)
 
     # Führe den Chi-Quadrat-Test für Zusammenhänge durch
     chi2_stat, p_val, dof, expected = chi2_contingency(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
@@ -47,7 +47,7 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
     st.text("p-Wert = " + str(p_val))
     st.text("Freiheitsgrade = " + str(dof))
     st.text("Erwartete Häufigkeiten")
-    st.dataframe(pd.DataFrame(np.array(expected).astype(int), columns=filter2_items, index=filter1_items))
+    st.dataframe(pd.DataFrame(np.array(expected).astype(int), columns=filter2_items, index=filter1_items),  use_container_width=True)
 
     # Interpretiere die Ergebnisse
     alpha = 0.05
