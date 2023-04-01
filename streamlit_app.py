@@ -87,7 +87,7 @@ with col3.expander('Kategorien wählen'):
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
-if filter2 in mehrfach: st.markdown('This text is :red[colored red], and this is **:blue[colored]** and bold.')
+if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
 
 with col4.expander('Kategorien wählen'):
     
