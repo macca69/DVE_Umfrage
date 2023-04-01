@@ -43,7 +43,7 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
     chi2_stat, p_val, dof, expected = chi2_contingency(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
     # Gib die Testergebnisse aus
-    st.expander('Einzelheiten Signifikanztest'):
+    with st.expander('Einzelheiten Signifikanztest'):
         st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
         st.text("p-Wert = " + str(p_val))
         st.text("Freiheitsgrade = " + str(dof))
