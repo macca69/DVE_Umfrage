@@ -58,11 +58,15 @@ df_1 = load_csv()
 
 col3, col4, col5 = st.columns(3)
 
+# Widgets
+
+# Filter #1
 unique_columns = df_1.columns.to_list()
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 with col3.expander('Kategorien wählen'):
     filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].unique()), natsorted(df_1[filter1].unique()), label_visibility='collapsed')
 
+# Filter #2
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
 filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
 
@@ -72,7 +76,6 @@ with col4.expander('Kategorien wählen'):
         df_temporary = df_1.copy()
         
         if df_temporary[filter2].isnull().any():
-            st.write(column)
             df_temporary.loc[df_temporary[filter2].isna(), filter2] = df_temporary.loc[df_temporary[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
             df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
             
