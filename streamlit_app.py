@@ -37,8 +37,17 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     
     st.plotly_chart(fig, use_container_width=True)
+    
+#######################################################################################################################################################
 
 st.set_page_config(layout="wide")
+st.markdown("""
+<style>
+.medium-size-font {
+    font-size:30px !important;
+}
+</style>
+""", unsafe_allow_html=True)
 
 mehrfach = ['5b) Fachlicher Schwerpunkt',
             '6b) Ich arbeite auch am...',
@@ -156,9 +165,11 @@ with col6:
     if p_val < alpha:
         #st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
         st.markdown('Es gibt :green[EINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        
     else:
         #st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
         st.markdown('Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        st.markdown('<p class="medium-size-font">Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1]'+</p>', unsafe_allow_html=True)
 
 st.stop()
 ###########################################################    
