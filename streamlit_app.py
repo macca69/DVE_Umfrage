@@ -104,7 +104,7 @@ with col4.expander('Kategorien wählen'):
         filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
         
     else:
-        filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
+        filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].dropna().unique()), natsorted(df_1[filter2].dropna().unique()), label_visibility='collapsed')
 
 # Filter #3
 unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
