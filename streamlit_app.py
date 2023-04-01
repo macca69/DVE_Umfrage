@@ -40,15 +40,6 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
     
 #######################################################################################################################################################
 
-st.set_page_config(layout="wide")
-st.markdown("""
-<style>
-.medium-size-font {
-    font-size:20px !important;
-}
-</style>
-""", unsafe_allow_html=True)
-
 mehrfach = ['5b) Fachlicher Schwerpunkt',
             '6b) Ich arbeite auch am...',
             '12a) Nicht als Arbeitszeit gerechnete und nicht vergütete Arbeitsleistungen am Arbeitsplatz',
@@ -163,13 +154,10 @@ with col6:
     # Interpretiere die Ergebnisse
     alpha = 0.05
     if p_val < alpha:
-        #st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
-        st.markdown('Es gibt :green[EINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
         
     else:
-        #st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
-        st.markdown('Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
-        st.markdown('<p class="medium-size-font">Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + ' und ' + filter1.split(') ')[1]+'</p>', unsafe_allow_html=True)
+        st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
 
 st.stop()
 ###########################################################    
