@@ -83,15 +83,13 @@ with col4.expander('Kategorien wählen'):
             df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
             st.write(df_temporary[filter2])
         
-        st.write([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])
-        
         unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
-        
         filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
         
     else:
         filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].unique()), natsorted(df_1[filter2].unique()), label_visibility='collapsed')
 
+# Filter #3
 unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
 filter3 = col5.selectbox('Dritter Filter', unique_columns, 3)
 with col5.expander('Kategorien wählen'):
@@ -110,20 +108,25 @@ with st.expander('Datensatz'):
 
 # Neuer Ansatz
 if filter2 in mehrfach:
-    try:
-        df_1[filter2] = df_1[filter2].apply(string_to_list)
     
-    except:
-        df_1.loc[df_1[column].isna(), column] = df_1.loc[df_1[column].isna(), column].apply(lambda x: ['k.A.'])
-        df_1[column] = df_1[column].apply(string_to_list)
+    if df_1[filter2].isnull().any():
+        df_1.loc[df_1[filter2].isna(), filter2] = df_1.loc[df_1[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
+        df_1[filter2] = df_1[filter2].apply(string_to_list)
+            
+    else:
+        df_1[filter2] = df_1[filter2].apply(string_to_list)
+        st.write(df_1[filter2])
 
+# Create slices with filter1 and filter2
 temporary_2 = []
 
 for ii in filter1_items:
     temporary_3 = df_1[df_1[filter1]==ii]
+    
     if filter2 in mehrfach:
         st.write(flatten([k for k in temporary_3[filter2]]))
         temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
+    
     else:
         #st.write([k for k in temporary_3[filter2]])
         temporary_2.append(pd.Series([k for k in temporary_3[filter2]]).value_counts().to_frame().assign(filter1=ii))
