@@ -154,9 +154,11 @@ with col6:
     # Interpretiere die Ergebnisse
     alpha = 0.05
     if p_val < alpha:
-        st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        #st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        st.markdown('Es gibt :green[EINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
     else:
-        st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        #st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        st.markdown('Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
 
 st.stop()
 ###########################################################    
