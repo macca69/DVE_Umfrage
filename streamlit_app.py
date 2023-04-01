@@ -77,6 +77,8 @@ with col4.expander('Kategorien wählen'):
             df_temporary.loc[df_temporary[column].isna(), column] = df_temporary.loc[df_temporary[column].isna(), column].apply(lambda x: ['k.A.'])
             df_temporary[column] = df_temporary[column].apply(string_to_list)
 
+        st.write([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])
+        
         unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
         
         filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
