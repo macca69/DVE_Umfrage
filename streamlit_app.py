@@ -20,7 +20,9 @@ def string_to_list(string):
     except:
         return string
 
-def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
+def plot_and_layout(fig_data, filter1, filter2, barnorm):
+    fig_data[filter2] = fig_data[filter2].str[0:35] 
+    
     fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
@@ -30,7 +32,7 @@ def plot_and_layout(fig_data, filter1, filter2, filter_items, barnorm):
                      #legend_title_text='',
                      #legend_font_size=15,
                      font=dict(size=15))
-    fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(filter_items), categoryorder='array')
+    fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
@@ -154,7 +156,7 @@ temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filt
 col6, col7 = st.columns(2)
 
 with col6:
-    plot_and_layout(temporary_2, filter1, filter2, filter1_items, '')
+    plot_and_layout(temporary_2, filter1, filter2, '')
     #st.write(temporary_2)
     significance_test(temporary_2)
     
