@@ -169,7 +169,7 @@ with col6:
     else:
         #st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
         st.markdown('Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
-        st.markdown('<p class="medium-size-font">Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + " und " + filter1.split(') ')[1]'+</p>', unsafe_allow_html=True)
+        st.markdown('<p class="medium-size-font">Es gibt :red[KEINEN signifikanten] Zusammenhang zwischen' + filter2.split(') ')[1] + ' und ' + filter1.split(') ')[1]+'</p>', unsafe_allow_html=True)
 
 st.stop()
 ###########################################################    
