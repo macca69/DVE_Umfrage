@@ -121,7 +121,7 @@ with st.expander('Datensatz'):
     #st.dataframe(df_slice_2, use_container_width=True)
     st.dataframe(df_slice_3, use_container_width=True)
     
-#########################################################
+#########################################################################################################################################################
 
 # Neuer Ansatz
 if filter2 in mehrfach:
@@ -142,7 +142,6 @@ for ii in filter1_items:
     
     if filter2 in mehrfach:
         occurrences = [word for word in flatten([k for k in temporary_3[filter2]]) if word in filter2_items]
-        st.write(occurrences)
         #temporary_2.append(pd.Series(flatten([k for k in temporary_3[filter2]])).value_counts().to_frame().assign(filter1=ii))
         temporary_2.append(pd.Series(occurrences).value_counts().to_frame().assign(filter1=ii))
     
