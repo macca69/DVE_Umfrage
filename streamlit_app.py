@@ -36,11 +36,11 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
-def significance_test(temporary_2):
-    st.dataframe(pd.DataFrame(np.array(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int), columns=filter2_items, index=filter1_items))
+def significance_test(df, filter1, filter2, filter1_items, filter2_items):
+    st.dataframe(pd.DataFrame(np.array(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int), columns=filter2_items, index=filter1_items))
 
     # Führe den Chi-Quadrat-Test für Zusammenhänge durch
-    chi2_stat, p_val, dof, expected = chi2_contingency(temporary_2.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
+    chi2_stat, p_val, dof, expected = chi2_contingency(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0))
 
     # Gib die Testergebnisse aus
     st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
@@ -158,15 +158,14 @@ col6, col7 = st.columns(2)
 with col6:
     #st.write(temporary_2)
     plot_and_layout(temporary_2, filter1, filter2, '')
-    significance_test(temporary_2)
+    significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
     
 # Create slices with filter1 and filter2
 
 with col7:
     fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
     plot_and_layout(fig2_data, filter2, filter3, '')
-    significance_test(fig2_data)
-    
+    significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
     
 st.stop()
 ###########################################################    
