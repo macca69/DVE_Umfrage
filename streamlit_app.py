@@ -23,7 +23,11 @@ def string_to_list(string):
 def plot_and_layout(fig_data, filter1, filter2, barnorm):
     
     fig_data[filter2] = fig_data[filter2].str[0:35]
-    fig_data = fig_data.reindex(index=order_by_index(fig_data.index, index_natsorted(fig_data.filter2)))
+    #fig_data = fig_data.reindex(index=order_by_index(fig_data.index, index_natsorted(fig_data.filter2)))
+    fig_data_natsorted = []
+    for k in natsorted(fig_data[filter2].unique()):
+        fig_data_natsorted.append(fig_data[fig_data[filter2]==k]])
+    fig_data = pd.concat(fig_data_natsorted, axis=0)
     
     st.write(fig_data)
     
