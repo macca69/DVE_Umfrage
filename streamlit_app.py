@@ -21,10 +21,6 @@ def string_to_list(string):
         return string
 
 def plot_and_layout(fig_data, filter1, filter2, barnorm):
-
-    if not filter2 in mehrfach:
-        if st.checkbox('Prozent'):
-            barnorm = 'percent'
     
     fig_data[filter2] = fig_data[filter2].str[0:35] 
     
@@ -167,7 +163,10 @@ col6, col7 = st.columns(2)
 
 with col6:
     #st.write(temporary_2)
-    plot_and_layout(temporary_2, filter1, filter2, '')
+    if not filter2 in mehrfach:
+        if st.checkbox('Prozent', key='1'):
+            barnorm = 'percent'
+    plot_and_layout(temporary_2, filter1, filter2, barnorm)
     significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
     
 # Create slices with filter2 and filter3
@@ -175,7 +174,10 @@ if filter2 in mehrfach: st.stop()
 
 with col7:
     fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
-    plot_and_layout(fig2_data, filter2, filter3, '')
+    if not filter3 in mehrfach:
+        if st.checkbox('Prozent', key='2'):
+            barnorm = 'percent'
+    plot_and_layout(fig2_data, filter2, filter3, barnorm)
     significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
     
 st.stop()
