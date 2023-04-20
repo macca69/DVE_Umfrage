@@ -3,7 +3,7 @@ import numpy as np
 import plotly.express as px
 import streamlit as st
 from PIL import Image
-from natsort import natsorted
+from natsort import natsorted, index_natsorted, order_by_index
 from scipy.stats import chi2_contingency
 #
 @st.cache_data
@@ -22,7 +22,8 @@ def string_to_list(string):
 
 def plot_and_layout(fig_data, filter1, filter2, barnorm):
     
-    fig_data[filter2] = fig_data[filter2].str[0:35].sort_values(filter2, key=natsort_keygen())
+    fig_data[filter2] = fig_data[filter2].str[0:35]
+    fig_data = fig_data.sort_values(filter2, key=natsort_keygen())
     
     st.write(fig_data)
     
