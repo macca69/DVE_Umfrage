@@ -6,7 +6,7 @@ from PIL import Image
 from natsort import natsorted
 from scipy.stats import chi2_contingency
 #
-#@st.cache_data
+@st.cache_data
 def load_csv():
     return pd.read_csv('df_1.csv', index_col=0)
     
