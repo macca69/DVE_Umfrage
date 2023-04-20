@@ -33,11 +33,13 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
                      #legend_title_text='',
                      #legend_font_size=15,
                      font=dict(size=15))
+    
     try:
-        fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+        filter1_split = filter1.split(') ')[1]
     except:
-        fig.update_xaxes(title=filter1, titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
-        
+        filter1_split = filter1
+    
+    fig.update_xaxes(title=filter1_split, titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
@@ -59,11 +61,17 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
 
     # Interpretiere die Ergebnisse
     alpha = 0.05
+    
+    try:
+        filter2_split = filter2.split(') ')[1]
+    except:
+        filter2_split = filter2
+    
     if p_val < alpha:
-        st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        st.text("Es gibt einen signifikanten Zusammenhang zwischen " + filter2_split + " und " + filter1.split(') ')[1])
         
     else:
-        st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2.split(') ')[1] + " und " + filter1.split(') ')[1])
+        st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter2_split + " und " + filter1.split(') ')[1])
     
 #######################################################################################################################################################
 st.set_page_config(layout="wide")
