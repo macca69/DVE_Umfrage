@@ -23,7 +23,7 @@ def string_to_list(string):
 def plot_and_layout(fig_data, filter1, filter2, barnorm):
     
     fig_data[filter2] = fig_data[filter2].str[0:35]
-    fig_data = fig_data.sort_values(filter2, key=natsort_keygen())
+    fig_data = fig_data.reindex(index=order_by_index(fig_data.index, index_natsorted(fig_data.filter2)))
     
     st.write(fig_data)
     
