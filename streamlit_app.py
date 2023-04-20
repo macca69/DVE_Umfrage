@@ -163,6 +163,7 @@ col6, col7 = st.columns(2)
 
 with col6:
     #st.write(temporary_2)
+    barnorm = ''
     if not filter2 in mehrfach:
         if st.checkbox('Prozent', key='1'):
             barnorm = 'percent'
@@ -174,6 +175,7 @@ if filter2 in mehrfach: st.stop()
 
 with col7:
     fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
+    barnorm = ''
     if not filter3 in mehrfach:
         if st.checkbox('Prozent', key='2'):
             barnorm = 'percent'
