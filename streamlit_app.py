@@ -33,7 +33,11 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
                      #legend_title_text='',
                      #legend_font_size=15,
                      font=dict(size=15))
-    fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+    try:
+        fig.update_xaxes(title=filter1.split(') ')[1], titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+    except:
+        fig.update_xaxes(title=filter1, titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+        
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
