@@ -68,7 +68,7 @@ def filter_split(filter):
     try:
         return filter.split(') ')[1]
     except:
-        return = filter
+        return filter
     
 #######################################################################################################################################################
 st.set_page_config(layout="wide")
