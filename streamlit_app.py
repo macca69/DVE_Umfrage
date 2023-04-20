@@ -43,7 +43,6 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
                      font=dict(size=15))
     
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
-    st.write(natsorted(fig_data[filter2].unique()))
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
