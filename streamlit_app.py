@@ -32,9 +32,16 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
     
     fig_data = pd.concat(fig_data_natsorted, axis=0)
     
-    fig = px.histogram(fig_data,
+    if st.checkbox('Horizontal'):
+        fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
+    else:
+        fig = px.histogram(fig_data,
+                       y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
+                       width=1000, height=750)
+        
+        
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=25, ),
                       margin=dict(l=0, r=0, t=75, b=0),
                      title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=30),
