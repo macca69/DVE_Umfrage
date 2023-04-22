@@ -43,8 +43,8 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
                      font=dict(size=20)
                      )
     
-    fig.update_xaxes(title=filter_split(filter1), titlefont_size=25, tickfont_size=20, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
-    fig.update_yaxes(title='Anzahl', titlefont_size=25, tickfont_size=20, nticks=20, tickmode='auto')
+    fig.update_xaxes(title=filter_split(filter1), titlefont_size=25, tickfont_size=25, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+    fig.update_yaxes(title='Anzahl', titlefont_size=25, tickfont_size=25, nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
 def significance_test(df, filter1, filter2, filter1_items, filter2_items):
