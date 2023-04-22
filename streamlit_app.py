@@ -44,7 +44,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag):
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=25, ),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=30),
+                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.93, font_size=30),
                      #legend_title_text='',
                      #legend_font_size=15,
                      font=dict(size=25)
