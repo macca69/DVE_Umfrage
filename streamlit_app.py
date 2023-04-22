@@ -35,12 +35,12 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
     fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
-    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=15, ),
+    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=20, ),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=20),
+                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=25),
                      #legend_title_text='',
                      #legend_font_size=15,
-                     font=dict(size=15))
+                     font=dict(size=20))
     
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=20, tickfont_size=15, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=20, tickfont_size=15, nticks=20, tickmode='auto')
