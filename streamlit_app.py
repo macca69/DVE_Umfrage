@@ -40,7 +40,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
                      title=dict(text=filter2.split(') ')[1], x=0.1, y=0.925, font_size=30),
                      #legend_title_text='',
                      #legend_font_size=15,
-                     font=dict(size=20)
+                     font=dict(size=25)
                      )
     
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=25, tickfont_size=25, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
