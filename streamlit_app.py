@@ -109,94 +109,100 @@ with col3.expander('Kategorien wählen'):
 
 # Filter #2
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
-filter2 = col4.selectbox('Zweiter Filter', ['keins']+unique_columns, 3)
+filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
-if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
-
-with col4.expander('Kategorien wählen'):
+if filter2 == 'keiner':
+    # Nur Histogramm oder Säulendiagramm von filter1
+    st.write('Histogramm oder Säulendiagramm filter1')
     
-    if filter2 in mehrfach:
-        df_temporary = df_1.copy()
-        
-        if df_temporary[filter2].isnull().any():
-            df_temporary.loc[df_temporary[filter2].isna(), filter2] = df_temporary.loc[df_temporary[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
-            df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
-            
+else:
+
+    if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
+
+    with col4.expander('Kategorien wählen'):
+
+        if filter2 in mehrfach:
+            df_temporary = df_1.copy()
+
+            if df_temporary[filter2].isnull().any():
+                df_temporary.loc[df_temporary[filter2].isna(), filter2] = df_temporary.loc[df_temporary[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
+                df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
+
+            else:
+                df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
+                #st.write(df_temporary[filter2])
+
+            unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
+            filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
+
         else:
-            df_temporary[filter2] = df_temporary[filter2].apply(string_to_list)
-            #st.write(df_temporary[filter2])
-        
-        unique_filter2_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter2]])))
-        filter2_items = st.multiselect('Kategorien wählen', natsorted(unique_filter2_items), natsorted(unique_filter2_items), label_visibility='collapsed')
-        
-    else:
-        filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].dropna().unique()), natsorted(df_1[filter2].dropna().unique()), label_visibility='collapsed')
+            filter2_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter2].dropna().unique()), natsorted(df_1[filter2].dropna().unique()), label_visibility='collapsed')
 
-# Filter #3
-unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
-filter3 = col5.selectbox('Dritter Filter', unique_columns, 3)
+    # Filter #3
+    unique_columns = df_1.drop([filter1, filter2], axis=1).columns.to_list()
+    filter3 = col5.selectbox('Dritter Filter', unique_columns, 3)
 
-with col5.expander('Kategorien wählen'):
-    filter3_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].dropna().unique()), natsorted(df_1[filter3].dropna().unique()), label_visibility='collapsed')
+    with col5.expander('Kategorien wählen'):
+        filter3_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter3].dropna().unique()), natsorted(df_1[filter3].dropna().unique()), label_visibility='collapsed')
 
-df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
-df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
-df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
+    df_slice_1 = df_1[df_1[filter1].isin(filter1_items)]
+    df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
+    df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
 
-with st.expander('Datensatz'):
-    #st.dataframe(df_slice_1, use_container_width=True)
-    #st.dataframe(df_slice_2, use_container_width=True)
-    st.dataframe(df_slice_3, use_container_width=True)
-    
-#########################################################################################################################################################
+    with st.expander('Datensatz'):
+        #st.dataframe(df_slice_1, use_container_width=True)
+        #st.dataframe(df_slice_2, use_container_width=True)
+        st.dataframe(df_slice_3, use_container_width=True)
 
-# Neuer Ansatz
-if filter2 in mehrfach:
-    
-    if df_1[filter2].isnull().any():
-        df_1.loc[df_1[filter2].isna(), filter2] = df_1.loc[df_1[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
-        df_1[filter2] = df_1[filter2].apply(string_to_list)
-            
-    else:
-        df_1[filter2] = df_1[filter2].apply(string_to_list)
-        #st.write(df_1[filter2])
+    #########################################################################################################################################################
 
-# Create slices with filter1 and filter2
-temporary_2 = []
-
-for ii in filter1_items:
-    temporary_3 = df_1[df_1[filter1]==ii]
-    
+    # Neuer Ansatz
     if filter2 in mehrfach:
-        occurrences = [word for word in flatten([k for k in temporary_3[filter2]]) if word in filter2_items]
-        temporary_2.append(pd.Series(occurrences).value_counts().to_frame().assign(filter1=ii))
-    
-    else:
-        temporary_2.append(pd.Series([k for k in temporary_3[temporary_3[filter2].isin(filter2_items)][filter2]]).value_counts().to_frame().assign(filter1=ii))
-        
-temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
 
-col6, col7 = st.columns(2)
+        if df_1[filter2].isnull().any():
+            df_1.loc[df_1[filter2].isna(), filter2] = df_1.loc[df_1[filter2].isna(), filter2].apply(lambda x: ['k.A.'])
+            df_1[filter2] = df_1[filter2].apply(string_to_list)
 
-with col6:
-    #st.write(temporary_2)
-    barnorm = ''
-    if not filter2 in mehrfach:
-        if st.checkbox('Prozent', key='1'):
-            barnorm = 'percent'
-    plot_and_layout(temporary_2, filter1, filter2, barnorm)
-    significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
-    
-# Create slices with filter2 and filter3
-if filter2 in mehrfach: st.stop()
+        else:
+            df_1[filter2] = df_1[filter2].apply(string_to_list)
+            #st.write(df_1[filter2])
 
-with col7:
-    fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
-    barnorm = ''
-    if not filter3 in mehrfach:
-        if st.checkbox('Prozent', key='2'):
-            barnorm = 'percent'
-    plot_and_layout(fig2_data, filter2, filter3, barnorm)
-    significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
-    
-st.stop()
+    # Create slices with filter1 and filter2
+    temporary_2 = []
+
+    for ii in filter1_items:
+        temporary_3 = df_1[df_1[filter1]==ii]
+
+        if filter2 in mehrfach:
+            occurrences = [word for word in flatten([k for k in temporary_3[filter2]]) if word in filter2_items]
+            temporary_2.append(pd.Series(occurrences).value_counts().to_frame().assign(filter1=ii))
+
+        else:
+            temporary_2.append(pd.Series([k for k in temporary_3[temporary_3[filter2].isin(filter2_items)][filter2]]).value_counts().to_frame().assign(filter1=ii))
+
+    temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 0: 'counts', 'filter1': filter1})
+
+    col6, col7 = st.columns(2)
+
+    with col6:
+        #st.write(temporary_2)
+        barnorm = ''
+        if not filter2 in mehrfach:
+            if st.checkbox('Prozent', key='1'):
+                barnorm = 'percent'
+        plot_and_layout(temporary_2, filter1, filter2, barnorm)
+        significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
+
+    # Create slices with filter2 and filter3
+    if filter2 in mehrfach: st.stop()
+
+    with col7:
+        fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
+        barnorm = ''
+        if not filter3 in mehrfach:
+            if st.checkbox('Prozent', key='2'):
+                barnorm = 'percent'
+        plot_and_layout(fig2_data, filter2, filter3, barnorm)
+        significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
+
+    st.stop()
