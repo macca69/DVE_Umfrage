@@ -109,7 +109,7 @@ with col3.expander('Kategorien wählen'):
 
 # Filter #2
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
-filter2 = col4.selectbox('Zweiter Filter', unique_columns, 2)
+filter2 = col4.selectbox('Zweiter Filter', ['keins']+unique_columns, 3)
 
 if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
 
