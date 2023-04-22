@@ -32,7 +32,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
     
     fig_data = pd.concat(fig_data_natsorted, axis=0)
     
-    if st.checkbox('Horizontal'):
+    if st.checkbox('Horizontal', key='3'):
         fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
