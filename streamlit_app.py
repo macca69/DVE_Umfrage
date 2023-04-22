@@ -20,7 +20,7 @@ def string_to_list(string):
     except:
         return string
 
-def plot_and_layout(fig_data, filter1, filter2, barnorm):
+def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag):
     
     fig_data[filter2] = fig_data[filter2].str[0:35]
     
@@ -32,7 +32,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm):
     
     fig_data = pd.concat(fig_data_natsorted, axis=0)
     
-    if st.checkbox('Horizontal', key='3'):
+    if horizontal_flag:
         fig = px.histogram(fig_data,
                        y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
                        width=1000, height=750)
@@ -198,7 +198,10 @@ else:
         if not filter2 in mehrfach:
             if st.checkbox('Prozent', key='1'):
                 barnorm = 'percent'
-        plot_and_layout(temporary_2, filter1, filter2, barnorm)
+            if st.checkbox('Horizonta', key='3'):
+                horizontal_flag = True
+                
+        plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
 
     # Create slices with filter2 and filter3
@@ -210,7 +213,10 @@ else:
         if not filter3 in mehrfach:
             if st.checkbox('Prozent', key='2'):
                 barnorm = 'percent'
-        plot_and_layout(fig2_data, filter2, filter3, barnorm)
+            if st.checkbox('Horizonta', key='4'):
+                horizontal_flag = True
+                
+        plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
 
     st.stop()
