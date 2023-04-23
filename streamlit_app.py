@@ -39,7 +39,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
     else:
         fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f',
-                       width=1000, height=750)
+                       width=1000, height=750, color_continuous_scale=px.colors.sequential.Blues)
         
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
