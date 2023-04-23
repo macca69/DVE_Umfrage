@@ -123,8 +123,20 @@ filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
 if filter2 == 'keiner':
     # Nur Histogramm oder Säulendiagramm von filter1
-    st.write('Histogramm oder Säulendiagramm filter1')
-    st.plotly_chart(px.histogram(df_1[filter1], text_auto='.0f'), use_container_width=True)
+    
+    font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
+    
+    fig = px.histogram(df_1[filter1], text_auto='.0f')
+    
+    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
+                      margin=dict(l=0, r=0, t=75, b=0),
+                     title=dict(text=filter1.split(') ')[1], x=0.1, y=0.94, font_size=int(font_size_factor*30)),
+                     font=dict(size=int(font_size_factor*25))
+                     )
+    
+    fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+    fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
+    st.plotly_chart(fig, use_container_width=True)
     
     histogram = df_1[filter1].value_counts().reset_index()
     st.write(histogram)
