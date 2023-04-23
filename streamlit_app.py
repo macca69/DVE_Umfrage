@@ -35,11 +35,11 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
     if horizontal_flag:
         fig = px.histogram(fig_data,
                        y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto=True,
-                       width=1000, height=750, color_continuous_scale='viridis')
+                       width=1000, height=750)
     else:
         fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True,
-                       width=1000, height=750, color_continuous_scale='viridis')
+                       width=1000, height=750)
         
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
