@@ -126,8 +126,10 @@ if filter2 == 'keiner':
     st.write('Histogramm oder Säulendiagramm filter1')
     st.plotly_chart(px.histogram(df_1[filter1], text_auto='.0f'), use_container_width=True)
     
-    st.write(df_1[filter1].value_counts())
-    plot_and_layout(df_1[filter1].value_counts().to_frame(), filter1, filter1, '', False, 0.5)
+    histogram = df_1[filter1].value_counts().to_frame()
+    st.write(histogram)
+    #st.write('weighted_mean =', histogram['column_name'] * df['weight']).sum() / df['weight'].sum())
+    #st.write(df_1[filter1].value_counts().sum())
     
 else:
 
