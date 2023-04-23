@@ -43,7 +43,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
     else:
         if color_scale_flag:
             fig = px.histogram(fig_data,
-                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True, color_discrete_sequence=px.colors.sequential.RdPu,
+                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True, color_discrete_sequence=px.colors.cyclical.HSV,#sequential.RdPu,
                        width=1000, height=750)
         else:
             fig = px.histogram(fig_data,
