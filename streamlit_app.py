@@ -122,7 +122,7 @@ filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 if filter2 == 'keiner':
     # Nur Histogramm oder Säulendiagramm von filter1
     st.write('Histogramm oder Säulendiagramm filter1')
-    st.write(df_1[filter1])
+    st.plotly_chart(px.histogram(df_1[filter1]), use_container_width=True)
     
 else:
 
