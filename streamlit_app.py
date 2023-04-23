@@ -138,7 +138,7 @@ if filter2 == 'keiner':
     
     histogram = df_1[filter1].value_counts().reset_index()
     st.write(histogram)
-    gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum())
+    gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
     try:
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
