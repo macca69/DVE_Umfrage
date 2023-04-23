@@ -126,7 +126,7 @@ if filter2 == 'keiner':
     
     st.write(df_1[filter1])
     
-    st.write(df_1[filter1].groupby([filter1]).count())
+    st.write(df_1[filter1].value_counts())
     
 else:
 
