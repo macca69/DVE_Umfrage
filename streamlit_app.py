@@ -125,9 +125,8 @@ if filter2 == 'keiner':
     font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
     
     fig = px.histogram(df_1[filter1], text_auto='.0f')
-    st.write(filter1, filter1.split(') '))
     
-    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
+    fig.update_layout(showlegend=False,
                       margin=dict(l=0, r=0, t=75, b=0),
                      title=dict(text=filter_split(filter1), x=0.1, y=0.94, font_size=int(font_size_factor*30)),
                      font=dict(size=int(font_size_factor*25))
