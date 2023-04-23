@@ -20,9 +20,9 @@ def string_to_list(string):
     except:
         return string
 
-def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_size_factor):
+def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_size_factor, color_scale_flag):
     
-    fig_data[filter2] = fig_data[filter2].str[0:35]
+    #fig_data[filter2] = fig_data[filter2].str[0:35]
     
     # Natsort by filter2 for legend sorting
     fig_data_natsorted = []
@@ -33,13 +33,21 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
     fig_data = pd.concat(fig_data_natsorted, axis=0)
     
     if horizontal_flag:
-        fig = px.histogram(fig_data,
+        if color_scale_flag:
+            fig = px.histogram(fig_data,
                        y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto=True, color_discrete_sequence=px.colors.sequential.RdPu,
                        width=1000, height=750)
+        else:
+            fig = px.histogram(fig_data,
+                       y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto=True, width=1000, height=750)
     else:
-        fig = px.histogram(fig_data,
+        if color_scale_flag:
+            fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True, color_discrete_sequence=px.colors.sequential.RdPu,
                        width=1000, height=750)
+        else:
+            fig = px.histogram(fig_data,
+                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True, width=1000, height=750)
         
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
@@ -47,8 +55,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
                      title=dict(text=filter_split(filter2), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
                      #legend_title_text='',
                      #legend_font_size=15,
-                     font=dict(size=int(font_size_factor*25))
-                     )
+                     font=dict(size=int(font_size_factor*25)))
     
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
@@ -216,14 +223,17 @@ else:
         with st.expander('Einstellungen'):
             barnorm = ''
             horizontal_flag = False
+            color_scale_flag = False
             if not filter2 in mehrfach:
                 if st.checkbox('Prozent', key='1'):
                     barnorm = 'percent'
             if st.checkbox('Horizontal', key='3'):
                 horizontal_flag = True
             font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='5')
+            if st.checkbox('Farbverlauf', key='10'):
+                color_scale_flag = True
                 
-        plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor)
+        plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor, color_scale_flag)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
 
     # Create slices with filter2 and filter3
@@ -235,14 +245,17 @@ else:
         with st.expander('Einstellungen'):
             barnorm = ''
             horizontal_flag = False
+            color_scale_flag = False
             if not filter3 in mehrfach:
                 if st.checkbox('Prozent', key='2'):
                     barnorm = 'percent'
             if st.checkbox('Horizontal', key='4'):
                 horizontal_flag = True
             font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='6')
+            if st.checkbox('Farbverlauf', key='11'):
+                color_scale_flag = True
                 
-        plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag, font_size_factor)
+        plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag, font_size_factor, color_scale_flag)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
 
     with st.expander('Datensatz'):
