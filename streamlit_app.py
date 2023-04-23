@@ -22,8 +22,6 @@ def string_to_list(string):
 
 def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_size_factor):
     
-    st.write(fig_data[filter2])
-    
     fig_data[filter2] = fig_data[filter2].str[0:35]
     
     # Natsort by filter2 for legend sorting
@@ -46,7 +44,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.94, font_size=int(font_size_factor*30)),
+                     title=dict(text=filter_split(filter2), x=0.1, y=0.94, font_size=int(font_size_factor*30)),
                      #legend_title_text='',
                      #legend_font_size=15,
                      font=dict(size=int(font_size_factor*25))
@@ -131,7 +129,7 @@ if filter2 == 'keiner':
     
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter1.split(') ')[1], x=0.1, y=0.94, font_size=int(font_size_factor*30)),
+                     title=dict(text=filter_split(filter1), x=0.1, y=0.94, font_size=int(font_size_factor*30)),
                      font=dict(size=int(font_size_factor*25))
                      )
     
