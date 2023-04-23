@@ -157,11 +157,6 @@ else:
     df_slice_2 = df_slice_1[df_slice_1[filter2].isin(filter2_items)]
     df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
 
-    with st.expander('Datensatz'):
-        #st.dataframe(df_slice_1, use_container_width=True)
-        #st.dataframe(df_slice_2, use_container_width=True)
-        st.dataframe(df_slice_3, use_container_width=True)
-
     #########################################################################################################################################################
 
     # Neuer Ansatz
@@ -225,4 +220,7 @@ else:
         plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
 
-    st.stop()
+    with st.expander('Datensatz'):
+        #st.dataframe(df_slice_1, use_container_width=True)
+        #st.dataframe(df_slice_2, use_container_width=True)
+        st.dataframe(df_slice_3[[filter1, filter2, filter3], use_container_width=True)
