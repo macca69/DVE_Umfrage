@@ -1,4 +1,4 @@
-plotly
+plotly==5.0.0
 streamlit
 pandas
 natsort==8.2.0
