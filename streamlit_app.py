@@ -20,7 +20,7 @@ def string_to_list(string):
     except:
         return string
 
-def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag):
+def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_size_factor):
     
     fig_data[filter2] = fig_data[filter2].str[0:35]
     
@@ -42,16 +42,16 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag):
                        width=1000, height=750)
         
         
-    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=25, ),
+    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
                       margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.94, font_size=30),
+                     title=dict(text=filter2.split(') ')[1], x=0.1, y=0.94, font_size=int(font_size_factor*30)),
                      #legend_title_text='',
                      #legend_font_size=15,
-                     font=dict(size=25)
+                     font=dict(size=int(font_size_factor*25))
                      )
     
-    fig.update_xaxes(title=filter_split(filter1), titlefont_size=25, tickfont_size=25, categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
-    fig.update_yaxes(title='Anzahl', titlefont_size=25, tickfont_size=25, nticks=20, tickmode='auto')
+    fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
+    fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
 def significance_test(df, filter1, filter2, filter1_items, filter2_items):
@@ -199,7 +199,7 @@ else:
                 horizontal_flag = True
             font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='5')
                 
-        plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag)
+        plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
 
     # Create slices with filter2 and filter3
@@ -207,6 +207,7 @@ else:
 
     with col7:
         fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
+        
         with st.expander('Einstellungen'):
             barnorm = ''
             horizontal_flag = False
@@ -217,10 +218,10 @@ else:
                 horizontal_flag = True
             font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='6')
                 
-        plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag)
+        plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag, font_size_factor)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
 
     with st.expander('Datensatz'):
         #st.dataframe(df_slice_1, use_container_width=True)
         #st.dataframe(df_slice_2, use_container_width=True)
-        st.dataframe(df_slice_3[[filter1, filter2, filter3], use_container_width=True)
+        st.dataframe(df_slice_3[[filter1, filter2, filter3]], use_container_width=True)
