@@ -215,8 +215,9 @@ else:
         if not filter3 in mehrfach:
             if st.checkbox('Prozent', key='2'):
                 barnorm = 'percent'
-            if st.checkbox('Horizontal', key='4'):
-                horizontal_flag = True
+        if st.checkbox('Horizontal', key='4'):
+            horizontal_flag = True
+        font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1, step=0.1, key='5')
                 
         plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
