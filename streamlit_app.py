@@ -138,9 +138,11 @@ if filter2 == 'keiner':
     
     histogram = df_1[filter1].value_counts().reset_index()
     st.write(histogram)
-    st.write('weighted_mean =', (histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum())
-    #st.write(df_1[filter1].value_counts().sum())
-    
+    gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum())
+    try:
+        st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
+    except:
+        pass
 else:
 
     if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
