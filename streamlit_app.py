@@ -35,19 +35,19 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
     if horizontal_flag:
         if color_scale_flag:
             fig = px.histogram(fig_data,
-                       y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto=True, text_template='%{y:.0f}', color_discrete_sequence=px.colors.diverging.RdYlBu,
+                       y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto='.2f', color_discrete_sequence=px.colors.diverging.RdYlBu,
                        width=1000, height=750)
         else:
             fig = px.histogram(fig_data,
-                       y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto=True, text_template='%{y:.0f}', width=1000, height=750)
+                       y=filter1, x='counts', color=filter2, barnorm=barnorm, text_auto='.2f', width=1000, height=750)
     else:
         if color_scale_flag:
             fig = px.histogram(fig_data,
-                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True, text_template='%{y:.0f}', color_discrete_sequence=px.colors.diverging.RdYlBu,
+                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.2f', color_discrete_sequence=px.colors.diverging.RdYlBu,
                        width=1000, height=750)
         else:
             fig = px.histogram(fig_data,
-                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto=True, text_template='%{y:.0f}', width=1000, height=750)
+                       x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.2f', width=1000, height=750)
         
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
