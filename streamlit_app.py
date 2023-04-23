@@ -128,7 +128,7 @@ if filter2 == 'keiner':
     
     histogram = df_1[filter1].value_counts().reset_index()
     st.write(histogram)
-    st.write('weighted_mean =', (histogram['index'] * df[filter1]).sum() / df[filter1].sum())
+    st.write('weighted_mean =', (histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum())
     #st.write(df_1[filter1].value_counts().sum())
     
 else:
