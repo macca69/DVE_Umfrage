@@ -125,7 +125,7 @@ if filter2 == 'keiner':
     st.plotly_chart(px.histogram(df_1[filter1], text_auto='.0f'), use_container_width=True)
     try:
         st.write(df_1[filter1].groupby(filter1).count())
-    expect:
+    except:
         st.error('Error!')
         st.stop()
     
