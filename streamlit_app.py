@@ -194,13 +194,15 @@ else:
 
     with col6:
         #st.write(temporary_2)
-        barnorm = ''
-        horizontal_flag = False
-        if not filter2 in mehrfach:
-            if st.checkbox('Prozent', key='1'):
-                barnorm = 'percent'
+        with st.expander('Einstellungen'):
+            barnorm = ''
+            horizontal_flag = False
+            if not filter2 in mehrfach:
+                if st.checkbox('Prozent', key='1'):
+                    barnorm = 'percent'
             if st.checkbox('Horizontal', key='3'):
                 horizontal_flag = True
+            font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='5')
                 
         plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
@@ -210,14 +212,15 @@ else:
 
     with col7:
         fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
-        barnorm = ''
-        horizontal_flag = False
-        if not filter3 in mehrfach:
-            if st.checkbox('Prozent', key='2'):
-                barnorm = 'percent'
-        if st.checkbox('Horizontal', key='4'):
-            horizontal_flag = True
-        font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='5')
+        with st.expander('Einstellungen'):
+            barnorm = ''
+            horizontal_flag = False
+            if not filter3 in mehrfach:
+                if st.checkbox('Prozent', key='2'):
+                    barnorm = 'percent'
+            if st.checkbox('Horizontal', key='4'):
+                horizontal_flag = True
+            font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='6')
                 
         plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
