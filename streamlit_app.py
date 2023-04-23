@@ -128,7 +128,7 @@ if filter2 == 'keiner':
     
     try:
         
-        st.write(df_1[filter1]).groupby([filter1]).count())
+        st.write(df_1[filter1].groupby([filter1]).count())
     except:
         st.error('Error!')
         st.stop()
