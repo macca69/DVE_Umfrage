@@ -124,7 +124,7 @@ if filter2 == 'keiner':
     
     font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
     
-    figure_data = df_1[df_1[filter1.isin(filter1_items)][filter1]
+    figure_data = df_1[df_1[filter1.isin(filter1_items)]][filter1]
     
     fig = px.histogram(figure_data, text_auto='.0f')
     
