@@ -138,10 +138,12 @@ if filter2 == 'keiner':
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
-    histogram = df_1[filter1].value_counts().reset_index()
+    histogram = df_1[filter1].value_counts()
     st.write(histogram)
-    gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
+    histogram = histogram.reset_index()
+    
     try:
+        gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
         pass
