@@ -124,7 +124,7 @@ if filter2 == 'keiner':
     st.write('Histogramm oder Säulendiagramm filter1')
     st.plotly_chart(px.histogram(df_1[filter1], text_auto='.0f'), use_container_width=True)
     try:
-        st.write(df_1[filter1].to_frame())#.groupby(filter1).count())
+        st.write(df_1[filter1].to_frame().groupby([filter1]).count())
     except:
         st.error('Error!')
         st.stop()
