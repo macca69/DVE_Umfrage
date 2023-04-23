@@ -122,6 +122,7 @@ filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 if filter2 == 'keiner':
     # Nur Histogramm oder Säulendiagramm von filter1
     st.write('Histogramm oder Säulendiagramm filter1')
+    st.write(df_1[filter1])
     
 else:
 
@@ -197,7 +198,7 @@ else:
                     barnorm = 'percent'
             if st.checkbox('Horizontal', key='3'):
                 horizontal_flag = True
-            font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='5')
+            font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='5')
                 
         plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
@@ -216,7 +217,7 @@ else:
                     barnorm = 'percent'
             if st.checkbox('Horizontal', key='4'):
                 horizontal_flag = True
-            font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=1.0, step=0.1, key='6')
+            font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='6')
                 
         plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag, font_size_factor)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
