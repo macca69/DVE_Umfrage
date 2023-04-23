@@ -22,6 +22,8 @@ def string_to_list(string):
 
 def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_size_factor):
     
+    st.write(fig_data[filter2])
+    
     fig_data[filter2] = fig_data[filter2].str[0:35]
     
     # Natsort by filter2 for legend sorting
