@@ -177,6 +177,9 @@ if filter2 == 'keiner':
 ###########################################################################################################################################################
 else:
     
+    with col3.expander('Kategorien wählen'):
+    filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
+
     if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
 
     with col4.expander('Kategorien wählen'):
