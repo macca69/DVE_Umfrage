@@ -149,6 +149,7 @@ if filter2 == 'keiner':
         occurrences = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
         st.write(occurrences)
         st.write(pd.Series(occurrences).value_counts())
+        st.plotly_chart(px.histogram(occurrences, text_auto='.0f'), use_container_width=True)
         
         
     else:
@@ -160,26 +161,26 @@ if filter2 == 'keiner':
 
         figure_data = df_1[df_1[filter1].isin(filter1_items)][filter1]
 
-        fig = px.histogram(figure_data, text_auto='.0f')
+    fig = px.histogram(figure_data, text_auto='.0f')
 
-        fig.update_layout(showlegend=False,
-                          margin=dict(l=0, r=0, t=75, b=0),
-                         title=dict(text=filter_split(filter1), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
-                         font=dict(size=int(font_size_factor*25)))
+    fig.update_layout(showlegend=False,
+                      margin=dict(l=0, r=0, t=75, b=0),
+                     title=dict(text=filter_split(filter1), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
+                     font=dict(size=int(font_size_factor*25)))
 
-        fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
-        fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
-        st.plotly_chart(fig, use_container_width=True)
+    fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
+    fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
+    st.plotly_chart(fig, use_container_width=True)
 
-        histogram = df_1[filter1].value_counts()
-        st.table(histogram)
-        histogram = histogram.reset_index()
+    histogram = df_1[filter1].value_counts()
+    st.table(histogram)
+    histogram = histogram.reset_index()
 
-        try:
-            gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
-            st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
-        except:
-            pass
+    try:
+        gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
+        st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
+    except:
+        pass
 ###########################################################################################################################################################
 else:
     
