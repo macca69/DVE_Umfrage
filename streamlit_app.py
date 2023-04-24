@@ -86,7 +86,7 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
         
 def filter_split(filter):    
     try:
-        if len(filter.split(') ')[0])>5:
+        if len(filter.split(') ')[0])>7:
             return filter
         else:
             return filter.split(') ')[1]
