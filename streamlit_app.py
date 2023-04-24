@@ -47,7 +47,7 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f', width=1000, height=750)
         
     fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25)), margin=dict(l=0, r=0, t=75, b=0),
-                      title=dict(text=filter_split(filter2), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
+                      title=dict(text=filter_split(filter2), x=0.5, xanchor='center', y=0.96, font_size=int(font_size_factor*40)),
                       font=dict(size=int(font_size_factor*25)))
     
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
