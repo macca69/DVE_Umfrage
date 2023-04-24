@@ -144,7 +144,7 @@ if filter2 == 'keiner':
         
         with col3.expander('Kategorien wählen'):
             filter1_items = col3.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
-        st.stop()
+            st.error('Que paso?')
         
     else:
         with col3.expander('Kategorien wählen'):
