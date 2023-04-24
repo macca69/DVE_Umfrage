@@ -143,7 +143,7 @@ if filter2 == 'keiner':
         unique_filter1_items = list(set(flatten([k for k in df_temporary[filter1]])))
         
         with col3.expander('Kategorien wählen'):
-            filter1_items = col3.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
+            filter1_items = st.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
             st.error('Que paso?')
         
     else:
