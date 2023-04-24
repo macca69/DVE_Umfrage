@@ -138,7 +138,6 @@ if filter2 == 'keiner':
         else:
             df_temporary[filter1] = df_temporary[filter1].apply(string_to_list)
 
-        st.write(flatten(df_temporary[filter1].to_list()))
         unique_filter1_items = list(set(flatten([k for k in df_temporary[filter1]])))
         
         with col3.expander('Kategorien wählen'):
@@ -147,9 +146,7 @@ if filter2 == 'keiner':
         
         figure_data = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
         figure_data = pd.Series(figure_data) 
-        st.write(figure_data)
         st.plotly_chart(px.histogram(figure_data, text_auto='.0f'), use_container_width=True)
-        
         
     else:
         with col3.expander('Kategorien wählen'):
