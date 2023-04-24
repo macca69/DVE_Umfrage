@@ -72,7 +72,7 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
         st.text("p-Wert = " + str(p_val))
         st.text("Freiheitsgrade = " + str(dof))
         st.text("Erwartete Häufigkeiten")
-        st.dataframe(pd.DataFrame(np.array(expected).astype(int), columns=filter2_items, index=filter1_items),  use_container_width=True)
+        st.dataframe(pd.DataFrame(np.array(expected).astype(int), columns=pivot_table.columns, index=pivot_table.index),  use_container_width=True)
 
     # Interpretiere die Ergebnisse
     alpha = 0.05
