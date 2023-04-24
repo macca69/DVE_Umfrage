@@ -122,6 +122,10 @@ filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
 #with col3.expander('Kategorien wählen'):
 #    filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
 
+# Filter #2
+    unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
+    filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
+    
 if filter2 == 'keiner':
     # Nur Histogramm oder Säulendiagramm von filter1
     if filter1 in mehrfach:
@@ -173,10 +177,6 @@ if filter2 == 'keiner':
 ###########################################################################################################################################################
 else:
     
-    # Filter #2
-    unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
-    filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
-
     if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
 
     with col4.expander('Kategorien wählen'):
