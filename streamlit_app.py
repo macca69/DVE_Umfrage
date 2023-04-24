@@ -142,11 +142,9 @@ if filter2 == 'keiner':
         
         with col3.expander('Kategorien wählen'):
             filter1_items = st.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
-            st.error('Que paso?')
         
         figure_data = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
         figure_data = pd.Series(figure_data) 
-        st.plotly_chart(px.histogram(figure_data, text_auto='.0f'), use_container_width=True)
         
     else:
         with col3.expander('Kategorien wählen'):
