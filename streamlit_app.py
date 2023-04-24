@@ -137,7 +137,6 @@ if filter2 == 'keiner':
 
         else:
             df_temporary[filter1] = df_temporary[filter1].apply(string_to_list)
-            #st.write(df_temporary[filter2])
 
         st.write(flatten(df_temporary[filter1].to_list()))
         unique_filter1_items = list(set(flatten([k for k in df_temporary[filter1]])))
@@ -147,8 +146,8 @@ if filter2 == 'keiner':
             st.error('Que paso?')
         
         figure_data = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
+        figure_data = pd.Series(figure_data) 
         st.write(figure_data)
-        st.write(pd.Series(figure_data).value_counts())
         st.plotly_chart(px.histogram(figure_data, text_auto='.0f'), use_container_width=True)
         
         
@@ -173,7 +172,7 @@ if filter2 == 'keiner':
     
     try:
 
-        histogram = df_1[filter1].value_counts()
+        histogram = figure_data.value_counts()
         st.table(histogram)
         histogram = histogram.reset_index()
 
