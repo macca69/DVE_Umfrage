@@ -119,8 +119,8 @@ col3, col4, col5 = st.columns(3)
 # Filter #1
 unique_columns = df_1.columns.to_list()
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
-#with col3.expander('Kategorien wählen'):
-#    filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
+
+if filter1 in mehrfach: col3.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
 
 # Filter #2
 unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
