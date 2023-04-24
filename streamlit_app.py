@@ -5,7 +5,7 @@ import streamlit as st
 from PIL import Image
 from natsort import natsorted, index_natsorted, order_by_index
 from scipy.stats import chi2_contingency
-#
+
 @st.cache_data
 def load_csv():
     return pd.read_csv('df_1.csv', index_col=0)
@@ -21,9 +21,6 @@ def string_to_list(string):
         return string
 
 def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_size_factor, color_scale_flag):
-    
-    #fig_data[filter2] = fig_data[filter2].str[0:35]
-    
     # Natsort by filter2 for legend sorting
     fig_data_natsorted = []
 
@@ -49,13 +46,9 @@ def plot_and_layout(fig_data, filter1, filter2, barnorm, horizontal_flag, font_s
             fig = px.histogram(fig_data,
                        x=filter1, y='counts', color=filter2, barnorm=barnorm, text_auto='.0f', width=1000, height=750)
         
-        
-    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25), ),
-                      margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter_split(filter2), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
-                     #legend_title_text='',
-                     #legend_font_size=15,
-                     font=dict(size=int(font_size_factor*25)))
+    fig.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25)), margin=dict(l=0, r=0, t=75, b=0),
+                      title=dict(text=filter_split(filter2), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
+                      font=dict(size=int(font_size_factor*25)))
     
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(fig_data[filter1].unique()), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
@@ -85,7 +78,6 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
         
     else:
         st.text("Es gibt KEINEN signifikanten Zusammenhang zwischen " + filter_split(filter2) + " und " + filter_split(filter1))
-        
         
 def filter_split(filter):    
     try:
@@ -156,22 +148,18 @@ if filter2 == 'keiner':
     
     fig = px.histogram(figure_data, text_auto='.0f')
 
-    fig.update_layout(showlegend=False,
-                      margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter_split(filter1), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
-                     font=dict(size=int(font_size_factor*25)))
+    fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=75, b=0), title=dict(text=filter_split(filter1), x=0.1, y=0.96, 
+                                                                                     font_size=int(font_size_factor*30)), font=dict(size=int(font_size_factor*25)))
 
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
     
     try:
-
         histogram = figure_data.value_counts()
-        st.table(histogram)
         histogram = histogram.reset_index()
+        st.dataframe(histogram, use_container_width=True)
 
-    
         gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
@@ -215,7 +203,6 @@ else:
     df_slice_3 = df_slice_2[df_slice_2[filter3].isin(filter3_items)]
 
     #########################################################################################################################################################
-
     # Neuer Ansatz
     if filter2 in mehrfach:
 
