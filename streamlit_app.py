@@ -119,42 +119,63 @@ col3, col4, col5 = st.columns(3)
 # Filter #1
 unique_columns = df_1.columns.to_list()
 filter1 = col3.selectbox('Erster Filter', unique_columns, 1)
-with col3.expander('Kategorien wählen'):
-    filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
-
-# Filter #2
-unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
-filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
+#with col3.expander('Kategorien wählen'):
+#    filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
 
 if filter2 == 'keiner':
     # Nur Histogramm oder Säulendiagramm von filter1
-    
-    font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
-    
-    figure_data = df_1[df_1[filter1].isin(filter1_items)][filter1]
-    
-    fig = px.histogram(figure_data, text_auto='.0f')
-    
-    fig.update_layout(showlegend=False,
-                      margin=dict(l=0, r=0, t=75, b=0),
-                     title=dict(text=filter_split(filter1), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
-                     font=dict(size=int(font_size_factor*25))
-                     )
-    
-    fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
-    fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
-    st.plotly_chart(fig, use_container_width=True)
-    
-    histogram = df_1[filter1].value_counts()
-    st.table(histogram)
-    histogram = histogram.reset_index()
-    
-    try:
-        gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
-        st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
-    except:
-        pass
+    if filter1 in mehrfach:
+        df_temporary = df_1.copy()
+
+        if df_temporary[filter1].isnull().any():
+            df_temporary.loc[df_temporary[filter1].isna(), filter1] = df_temporary.loc[df_temporary[filter1].isna(), filter2].apply(lambda x: ['k.A.'])
+            df_temporary[filter1] = df_temporary[filter1].apply(string_to_list)
+
+        else:
+            df_temporary[filter1] = df_temporary[filter1].apply(string_to_list)
+            #st.write(df_temporary[filter2])
+
+        st.write(df_temporary[filter1])
+        unique_filter1_items = list(set(flatten([k for k in df_temporary[df_temporary[filter1].isin(filter1_items)][filter1]])))
+        with col3.expander:
+            filter1_items = st.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
+            st.stop()
+        
+    else:
+        with col3.expander('Kategorien wählen'):
+            filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
+
+        
+        font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
+
+        figure_data = df_1[df_1[filter1].isin(filter1_items)][filter1]
+
+        fig = px.histogram(figure_data, text_auto='.0f')
+
+        fig.update_layout(showlegend=False,
+                          margin=dict(l=0, r=0, t=75, b=0),
+                         title=dict(text=filter_split(filter1), x=0.1, y=0.96, font_size=int(font_size_factor*30)),
+                         font=dict(size=int(font_size_factor*25)))
+
+        fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
+        fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
+        st.plotly_chart(fig, use_container_width=True)
+
+        histogram = df_1[filter1].value_counts()
+        st.table(histogram)
+        histogram = histogram.reset_index()
+
+        try:
+            gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
+            st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
+        except:
+            pass
+###########################################################################################################################################################
 else:
+    
+    # Filter #2
+    unique_columns = df_1.drop(filter1, axis=1).columns.to_list()
+    filter2 = col4.selectbox('Zweiter Filter', ['keiner']+unique_columns, 3)
 
     if filter2 in mehrfach: col4.markdown('Dieser Filter beinhaltet **:blue[Mehrfachnennungen]**')
 
