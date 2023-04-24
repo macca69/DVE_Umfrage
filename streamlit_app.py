@@ -141,9 +141,10 @@ if filter2 == 'keiner':
 
         st.write(df_temporary[filter1])
         unique_filter1_items = list(set(flatten([k for k in df_temporary[filter1]])))
+        
         with col3.expander:
             filter1_items = st.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
-            st.stop()
+        st.stop()
         
     else:
         with col3.expander('Kategorien wählen'):
