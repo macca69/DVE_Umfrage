@@ -146,10 +146,10 @@ if filter2 == 'keiner':
             filter1_items = st.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
             st.error('Que paso?')
         
-        occurrences = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
-        st.write(occurrences)
-        st.write(pd.Series(occurrences).value_counts())
-        st.plotly_chart(px.histogram(occurrences, text_auto='.0f'), use_container_width=True)
+        figure_data = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
+        st.write(figure_data)
+        st.write(pd.Series(figure_data).value_counts())
+        st.plotly_chart(px.histogram(figure_data, text_auto='.0f'), use_container_width=True)
         
         
     else:
@@ -171,12 +171,14 @@ if filter2 == 'keiner':
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
     st.plotly_chart(fig, use_container_width=True)
-
-    histogram = df_1[filter1].value_counts()
-    st.table(histogram)
-    histogram = histogram.reset_index()
-
+    
     try:
+
+        histogram = df_1[filter1].value_counts()
+        st.table(histogram)
+        histogram = histogram.reset_index()
+
+    
         gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
