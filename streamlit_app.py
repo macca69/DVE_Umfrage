@@ -146,6 +146,10 @@ if filter2 == 'keiner':
             filter1_items = st.multiselect('Kategorien wählen', natsorted(unique_filter1_items), natsorted(unique_filter1_items), label_visibility='collapsed')
             st.error('Que paso?')
         
+        occurrences = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
+        st.write(occurrences)
+        
+        
     else:
         with col3.expander('Kategorien wählen'):
             filter1_items = st.multiselect('Kategorien wählen', natsorted(df_1[filter1].dropna().unique()), natsorted(df_1[filter1].dropna().unique()), label_visibility='collapsed')
