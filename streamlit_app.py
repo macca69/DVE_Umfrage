@@ -146,7 +146,7 @@ if filter2 == 'keiner':
     st.plotly_chart(fig, use_container_width=True)
     
     histogram = df_1[filter1].value_counts()
-    st.write(histogram)
+    st.table(histogram)
     histogram = histogram.reset_index()
     
     try:
