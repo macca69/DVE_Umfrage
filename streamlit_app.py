@@ -139,7 +139,7 @@ if filter2 == 'keiner':
             df_temporary[filter1] = df_temporary[filter1].apply(string_to_list)
             #st.write(df_temporary[filter2])
 
-        st.write(df_temporary[filter1])
+        st.write(df_temporary[filter1].to_list())
         unique_filter1_items = list(set(flatten([k for k in df_temporary[filter1]])))
         
         with col3.expander('Kategorien wählen'):
