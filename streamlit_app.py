@@ -157,9 +157,9 @@ if filter2 == 'keiner':
     
     try:
         histogram = figure_data.value_counts()
-        histogram = histogram.reset_index()
         st.dataframe(histogram, use_container_width=True)
-
+        
+        histogram = histogram.reset_index()
         gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
