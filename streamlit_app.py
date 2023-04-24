@@ -86,7 +86,10 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
         
 def filter_split(filter):    
     try:
-        return filter.split(') ')[1]
+        if len(filter.split(') '))[0]>3:
+            return filter
+        else:
+            return filter.split(') ')[1]
     except:
         return filter
     
@@ -152,7 +155,6 @@ if filter2 == 'keiner':
     font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
     
     fig = px.histogram(figure_data, text_auto='.0f')
-    st.write(filter1)
 
     fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=75, b=0), title=dict(text=filter_split(filter1), x=0.1, y=0.96, 
                                                                                      font_size=int(font_size_factor*30)), font=dict(size=int(font_size_factor*25)))
@@ -165,7 +167,6 @@ if filter2 == 'keiner':
         histogram = figure_data.value_counts()
         
         try:
-            st.write('Hey!')
             st.dataframe(histogram.rename(filter1), use_container_width=True)
         except:
             st.dataframe(histogram, use_container_width=True)
