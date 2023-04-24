@@ -148,6 +148,7 @@ if filter2 == 'keiner':
         
         occurrences = [word for word in flatten(df_temporary[filter1].to_list()) if word in filter1_items]
         st.write(occurrences)
+        st.write(pd.Series(occurrences).value_counts())
         
         
     else:
