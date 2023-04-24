@@ -64,6 +64,7 @@ def significance_test(df, filter1, filter2, filter1_items, filter2_items):
         filter1_items = [x for x in filter1_items if x == x] # Drop nan
         filter2_items = [x for x in filter2_items if x == x] # Drop nan
         st.write(np.array(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int))
+        st.write(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0)))
         st.dataframe(pd.DataFrame(np.array(df.pivot(index=filter1, columns=filter2, values='counts').fillna(0)).astype(int), columns=filter2_items, index=filter1_items),  use_container_width=True)
         st.text("Chi-Quadrat-Statistik = " + str(chi2_stat))
         st.text("p-Wert = " + str(p_val))
