@@ -160,7 +160,8 @@ if filter2 == 'keiner':
         
         try:
             st.write('Hey!')
-            st.dataframe(histogram.rename(columns={'0': filter1}), use_container_width=True)
+            st.write(histogram.columns)
+            st.dataframe(histogram.rename(columns={0: filter1}), use_container_width=True)
         except:
             st.dataframe(histogram, use_container_width=True)
                          
