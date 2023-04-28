@@ -269,7 +269,7 @@ else:
     if filter2 in mehrfach: st.stop()
 
     with col7:
-        fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={0: 'counts'}).reset_index()
+        fig2_data = df_slice_3[[filter2, filter3]].value_counts().to_frame().rename(columns={'count': 'counts'}).reset_index()
         
         with st.expander('Einstellungen'):
             barnorm = ''
