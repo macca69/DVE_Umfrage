@@ -175,7 +175,8 @@ if filter2 == 'keiner':
             st.dataframe(histogram, use_container_width=True)
                          
         histogram = histogram.reset_index()
-        gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
+        #gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
+        gewichteter_mittelwert = round((histogram.index * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
         pass
