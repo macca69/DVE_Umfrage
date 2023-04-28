@@ -164,9 +164,12 @@ if filter2 == 'keiner':
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
     col10.plotly_chart(fig, use_container_width=True)
     
-    col11.plotly_chart(px.pie(figure_data.value_counts(), values='count', names=figure_data.value_counts().index))
+    pie_chart = px.pie(figure_data.value_counts(), values='count', names=figure_data.value_counts().index)
+    pie_chart.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25)), margin=dict(l=0, r=0, t=75, b=0),
+                      title=dict(text=filter_split(filter1), x=0.5, xanchor='right', y=0.96, font_size=int(font_size_factor*40)),
+                      font=dict(size=int(font_size_factor*25)))
     
-    
+    col11.plotly_chart()
     
     try:
         histogram = figure_data.value_counts()
