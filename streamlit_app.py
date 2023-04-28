@@ -164,7 +164,7 @@ if filter2 == 'keiner':
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
     col10.plotly_chart(fig, use_container_width=True)
     
-    col11.plotly_chart(px.pie(figure_data.value_counts(), values='count', names=figure_data.value_counts().index)
+    col11.plotly_chart(px.pie(figure_data.value_counts(), values='count', names=figure_data.value_counts().index))
     
     
     
