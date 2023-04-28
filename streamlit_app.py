@@ -165,6 +165,7 @@ if filter2 == 'keiner':
     
     try:
         histogram = figure_data.value_counts()
+        st.write(histogram)
         
         try:
             st.dataframe(histogram.rename(filter1), use_container_width=True)
