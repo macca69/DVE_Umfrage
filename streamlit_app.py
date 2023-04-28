@@ -165,13 +165,10 @@ if filter2 == 'keiner':
     
     try:
         histogram = figure_data.value_counts()
-        st.write(histogram)
         
         try:
-            st.write('with rename')
             st.dataframe(histogram.rename(filter1), use_container_width=True)
         except:
-            st.write('without rename')
             st.dataframe(histogram, use_container_width=True)
                          
         histogram = histogram.reset_index()
