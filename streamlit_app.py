@@ -158,7 +158,7 @@ if filter2 == 'keiner':
     fig = px.histogram(figure_data, text_auto='.0f')
 
     fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=75, b=0), title=dict(text=filter_split(filter1), x=0.1, y=0.96, 
-                                                                                     font_size=int(font_size_factor*30)), font=dict(size=int(font_size_factor*25)))
+                                                                                     font_size=int(font_size_factor*40)), font=dict(size=int(font_size_factor*25)))
 
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
