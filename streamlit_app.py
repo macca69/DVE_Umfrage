@@ -154,6 +154,7 @@ if filter2 == 'keiner':
 
     font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='57')
     
+    col10, col11 = st.columns(2)
     fig = px.histogram(figure_data, text_auto='.0f')
 
     fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=75, b=0), title=dict(text=filter_split(filter1), x=0.1, y=0.96, 
@@ -161,7 +162,11 @@ if filter2 == 'keiner':
 
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
     fig.update_yaxes(title='Anzahl', titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), nticks=20, tickmode='auto')
-    st.plotly_chart(fig, use_container_width=True)
+    col10.plotly_chart(fig, use_container_width=True)
+    
+    col11.plotly_chart(px.pie(figure_data.value_counts(), values='count'))#, names='country')
+    
+    
     
     try:
         histogram = figure_data.value_counts()
