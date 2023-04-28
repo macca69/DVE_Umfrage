@@ -181,7 +181,7 @@ if filter2 == 'keiner':
                          
         histogram = histogram.reset_index()
         #gewichteter_mittelwert = round((histogram['index'] * histogram[filter1]).sum() / histogram[filter1].sum(), 2)
-        st.write(histogram, histogram.index, histogram.reset_index(), histogram[filter1].sum())
+        #st.write(histogram, histogram.index, histogram.reset_index(), histogram[filter1].sum())
         gewichteter_mittelwert = round((histogram[filter1] * histogram['count']).sum() / histogram['count'].sum(), 2)
         st.write('Gewichteter Mittelwert = '+str(gewichteter_mittelwert))
     except:
