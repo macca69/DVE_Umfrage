@@ -157,7 +157,7 @@ if filter2 == 'keiner':
     col10, col11 = st.columns(2)
     fig = px.histogram(figure_data, text_auto='.0f')
 
-    fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=75, b=0), title=dict(text=filter_split(filter1), x=0.1, y=0.96, 
+    fig.update_layout(showlegend=False, margin=dict(l=0, r=0, t=75, b=0), title=dict(text=filter_split(filter1), x=0.1, y=0.98, 
                                                                                      font_size=int(font_size_factor*40)), font=dict(size=int(font_size_factor*25)))
 
     fig.update_xaxes(title=filter_split(filter1), titlefont_size=int(font_size_factor*25), tickfont_size=int(font_size_factor*25), categoryarray=natsorted(filter1_items), categoryorder='array')
@@ -166,7 +166,7 @@ if filter2 == 'keiner':
     
     pie_chart = px.pie(figure_data.value_counts(), values='count', names=figure_data.value_counts().index)
     pie_chart.update_layout(legend=dict(itemwidth=30, title_text='', font_size=int(font_size_factor*25)), margin=dict(l=0, r=0, t=75, b=0),
-                      title=dict(text=filter_split(filter1), x=0.5, xanchor='right', y=0.96, font_size=int(font_size_factor*40)),
+                      title=dict(text=filter_split(filter1), x=0.5, xanchor='right', y=0.98, font_size=int(font_size_factor*40)),
                       font=dict(size=int(font_size_factor*25)))
     
     col11.plotly_chart(pie_chart)
