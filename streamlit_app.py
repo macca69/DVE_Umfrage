@@ -259,6 +259,7 @@ else:
             if st.checkbox('Farbverlauf', key='10'):
                 color_scale_flag = True
                 
+        st.write(temporary_2)
         plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor, color_scale_flag)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
 
@@ -280,7 +281,8 @@ else:
             font_size_factor = st.number_input('Schriftgröße', min_value=0.5, max_value=2.0, value=0.5, step=0.1, key='6')
             if st.checkbox('Farbverlauf', key='11'):
                 color_scale_flag = True
-                
+        
+        st.write(fig2_data)
         plot_and_layout(fig2_data, filter2, filter3, barnorm, horizontal_flag, font_size_factor, color_scale_flag)
         significance_test(fig2_data, filter2, filter3, filter2_items, filter3_items)
 
