@@ -8,7 +8,7 @@ from scipy.stats import chi2_contingency
 
 @st.cache_data
 def load_csv():
-    return pd.read_csv('df_1.csv', index_col=0)
+    return pd.read_csv('df_2.csv', index_col=0)
     
 def flatten(l):
     return [item for sublist in l for item in sublist]
