@@ -170,6 +170,7 @@ if filter2 == 'keiner':
         try:
             st.dataframe(histogram.rename(filter1), use_container_width=True)
         except:
+            st.write('without rename')
             st.dataframe(histogram, use_container_width=True)
                          
         histogram = histogram.reset_index()
