@@ -168,6 +168,7 @@ if filter2 == 'keiner':
         st.write(histogram)
         
         try:
+            st.write('with rename')
             st.dataframe(histogram.rename(filter1), use_container_width=True)
         except:
             st.write('without rename')
