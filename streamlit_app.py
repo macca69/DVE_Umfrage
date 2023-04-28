@@ -259,7 +259,7 @@ else:
             if st.checkbox('Farbverlauf', key='10'):
                 color_scale_flag = True
                 
-        st.write(temporary_2)
+        st.write('first call', temporary_2)
         plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor, color_scale_flag)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
 
