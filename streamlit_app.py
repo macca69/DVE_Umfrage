@@ -240,9 +240,7 @@ else:
         else:
             temporary_2.append(pd.Series([k for k in temporary_3[temporary_3[filter2].isin(filter2_items)][filter2]]).value_counts().to_frame().assign(filter1=ii))
 
-    st.write('concatcallwithourename', pd.concat(temporary_2).reset_index())
     temporary_2 = pd.concat(temporary_2).reset_index().rename(columns={'index': filter2, 'count': 'counts', 'filter1': filter1})
-    st.write('concatcall', temporary_2)
 
     col6, col7 = st.columns(2)
 
@@ -261,7 +259,6 @@ else:
             if st.checkbox('Farbverlauf', key='10'):
                 color_scale_flag = True
                 
-        st.write('first call', temporary_2)
         plot_and_layout(temporary_2, filter1, filter2, barnorm, horizontal_flag, font_size_factor, color_scale_flag)
         significance_test(temporary_2, filter1, filter2, filter1_items, filter2_items)
 
