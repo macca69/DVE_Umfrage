@@ -169,7 +169,7 @@ if filter2 == 'keiner':
                       title=dict(text=filter_split(filter1), x=0.5, xanchor='right', y=0.96, font_size=int(font_size_factor*40)),
                       font=dict(size=int(font_size_factor*25)))
     
-    col11.plotly_chart()
+    col11.plotly_chart(pie_chart)
     
     try:
         histogram = figure_data.value_counts()
